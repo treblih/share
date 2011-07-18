@@ -1,0 +1,5 @@
+almost all locks are implemented in userspace, for efficient
+
+multithread then fork, child process clones all locks but discards all threads
+多线程程序 fork 前，应该由发起 fork 的线程 lock 所有子进程可能用到的锁，fork 后，把它们一一 unlock 
+当然，这样的做法就隐含了锁的次序。如果次序和平时不同，那么就会死锁。

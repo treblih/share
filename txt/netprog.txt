@@ -1,0 +1,103 @@
+tfn2k fprobe rinetd
+
+libnids提供了tcp流重组功能，这是lipcap所不具备的
+
+常用的Socket类型有两种：流式Socket（SOCK_STREAM, TCP）和数据报式Socket（SOCK_DGRAM, UDP）
+两个网络程序之间的一个网络连接包括五种信息：通信协议、本地协议地址、本地主机端口、远端主机地址和远端协议端口
+
+struct sock     kernel net
+struct socket   interface to userspace
+
+int socket(int domain/family, int type, int protocol/family mem);
+
+AF_ address family
+PF_ protocol family
+"The protocol family generally is the same as the address family", and subsequent standards use AF_* everywhere.
+Address family identifies a collection of protocol with the SAME ADDRESS FORMAT,while protocol family identifies a collection of protocol having SAME ARCHITECTURE.
+UNP V1, Ch4, the history of AF_ and PF_
+
+2.6.25 dev_get_by_index(char *) -> dev_get_by_index(struct net*, char *)    #include <net/net_namespace.h>; add &init_net as default struct net *
+struct net_device.hard_header -> net_device->header_ops->create
+
+2.6.32 adds a new boolean arg -- `int kern', to determine socket creating in userspace or kernel.
+All protocol family domain has the structure:
+struct net_proto_family {
+	int		family;
+	int		(*create)(struct net *net, struct socket *sock, int protocol, int kern);
+	struct module	*owner;
+};
+The prototype __sock_create(..., int kern),
+and normal calling routines:
+userspace -> sys_socket -> sock_create() -> __sock_create(..., 0) -> *create(..., 0)
+            kernel -> sock_create_kern() -> __sock_create(..., 1) -> *create(..., 1)
+sock_create()           in a system call and you are creating a socket for the process
+sock_create_kern()      anywhere in the kernel and want to create a socket, 
+                        because you have some client or server running in kernel mode (e.g. nfs). 
+                        I think interrupts have to be enabled when calling any of these functions.
+For the kernel one, ought to add 
+    if (!kern)
+            return -EPERM;  /* means operation not permitted */
+While csmencaps walks userspace road, like socket(AF_CSME, ...), AF_CSME is user defined protocol family, namely the address family (AF_)
+
+struct sockaddr_in {（在netinet/in.h中定义）：
+    short  int  sin_family;                      /* Address family */
+    unsigned  short  int  sin_port;       /* Port number */
+    struct  in_addr  sin_addr;              /* Internet address */
+    unsigned  char  sin_zero[8];         /* Same size as struct sockaddr */
+};
+struct sockaddr {
+    unsigned  short  sa_family;     /* address family, AF_xxx */
+    char  sa_data[14];                 /* 14 bytes of protocol address */
+};
+sizeof(struct sockaddr) == sizeof(struct sockaddr_in) == 16
+mysock.sa_family=AF_INET;
+mysock.sin_addr.s_addr=inet_addr("192.168.0.1");
+
+The bind() function shall assign a local socket address address to a socket identified by descriptor  socket  that  has  no  local
+       socket  address  assigned.  Sockets  created  with  the socket() function are initially unnamed; they are identified only by their
+       address family.
+
+ip header + ip data <-> netlink header + data
+    struct nlmsghdr {
+        __u32 nlmsg_len;   /* Length of message */
+        __u16 nlmsg_type;  /* Message type*/
+        __u16 nlmsg_flags; /* Additional flags */
+        __u32 nlmsg_seq;   /* Sequence number */
+        __u32 nlmsg_pid;   /* Sending process PID */
+    };
+
+pcap:
+    pcap is a copy of network main stream
+    socket(PF_PACKET
+    pcap_loop(handle, 0, callback, NULL);       sniff forever, because count is 0
+
+
+
+--fpnp2-------------------------------------------------------------------------------------------------
+Chapter 1
+.1 is gateway default, not forced
+DF flag (Don't Fragment) set (TCP)  -- gateway discards and send ICMP back to notice sender to split it
+                         unset (UDP)-- gateway split it
+
+Chapter 2
+/etc/services   all port map
+portmap/rpcbind 
+--------------------------------------------------------------------------------------------------------
+
+--fpnp1-------------------------------------------------------------------------------------------------
+Chapter 2
+fd = s.makefile('rw', 0)        makefile([mode[, bufsize]]) -> file object
+
+client send while server shutdown, no error report
+use s.shutdown(1) after s.sendall()
+    s.sendall('GET %s HTTP/1.0\r\n\r\n' % filename)
+    try:
+        s.shutdown(1)
+    except socket.error, e:
+        print "error  sending data (detected by shutdown): %s" % e
+
+s.connect() is optional in UDP, s.sendto('', (host, port)) instead
+
+Chapter 20
+fork() copy socket (as fs) to child, so 2 connection, need to close both
+--------------------------------------------------------------------------------------------------------
