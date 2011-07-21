@@ -1,5 +1,16 @@
+ERROR:
+    waf@ubuntu:~$ sh ./find_exe.sh 
+    ./find_exe.sh: 24: Bad substitution
+        check /bin/sh -> bash or dash....
+
 BASH:
 no global/local var, all visible after 'sourced'
+
+a=`./a.out`
+    assign stdout (excluding stderr) to a
+./a.out
+a=$?
+    return x or exit(x)
 
 bash:   == = all ok
 zsh:    == fails in `source`  mklvars.sh:43: = not found
@@ -29,6 +40,8 @@ ${val%
 ${val%%
 ${val:-empty}
 ${val//old/new}
+${val:s:e}
+${val:(-3)}     last 3
 
 if gcc >& /dev/null; then       no, cmd success(return 0) == true
     echo yes 

@@ -550,3 +550,7 @@ static int mmap_mem(struct file *file, struct vm_area_struct *vma)
 
     if (!range_is_allowed(vma->vm_pgoff, size)) -> devmem_is_allowed()
         return -EPERM;
+
+ERROR
+    insmod      -1 Unknown symbol in module
+                -1 Invalid module format (diff kernel version between compiled & running)

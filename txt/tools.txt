@@ -34,6 +34,8 @@ dpkg -S cmd     to find it's pkg
 
 find . -name "*.cpp" -exec wc -l {} \; | awk '{a+=$1} END {print a}'
 ... | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n
+find . -maxdepth 1 -type d                              all dir under current dir
+find . -maxdepth 1 -type d -exec make -C {} \;          recursive make
 
 host/build      cpu-vendor-os
 WARNING: WindRiver calls the build system the host system and the host system, they call the target.
@@ -416,6 +418,8 @@ lsmod | grep nvidia/nouveau		show the status of modules in the linux kernel  /pr
 
 system-config-boot/display/...		check'n change sys config
 after install nVIDIA's drive, the monitor would be so faint, just run "system-config-display"
+
+monit -d seconds    to overrides 'set daemon seconds' in monitrc
 
 /etc/yum/plugins/plugin.conf	--> 	if ENABLED=0, then the corresponding plugin wouldn't run with yum
 
@@ -901,7 +905,7 @@ vim:
 
 C-x C-l     match an existing line
 C-x C-f     filename match under current vim dir
--b(essential) a.bin, then :%!xxd
+-b(essential) a.bin, then :%!xxd, edit 0x.., not ascii
 :tag write_<tab>    :tag /block<tab>    :tag /^block<tab>
 :tselect write
 :12,17 w>> ~/163.txt

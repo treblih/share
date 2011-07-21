@@ -5,6 +5,12 @@ need libpcap.so, neither libpcap.so.1 nor libpcap.so.1.1.1
 just make a symbol link
 
 
+machine a  libxxx.so.1.0.0      
+machine b  libxxx.so.2.0.0
+    can't change sym-link and so's name to 2.0.0 to fix the portable problem, ldconfig (cache) knows which version,
+    after `sudo ldconfig`, sym-link rebuild
+
+
 ELF格式的可执行文件中，全局内存包括三种：bss、data和rodata
 
 变量bss_array的大小为4M，而可执行文件的大小只有5K。 由此可见，bss类型的全局变量只占运行时的内存空间，而不占文件空间
