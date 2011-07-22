@@ -1,5 +1,10 @@
 http://www.farsight.com.cn/lecture/L091114R.htm  Barry Song, 6410 bsp lecture
 
+/dev/ttyUSB0 not /dev/ttyS0
+由于使用的是 USB 转 serial 的转换线，所以在 Serial port setup 这一项中的 A –    Serial Device
+中需要设置为 /dev/ttyUSB0，而不是网上所说的 /dev/ttyS0。如果使用后者，在使用： 
+# minicom 
+进入之后，会处于一直等待状态。
 
 cp arch/arm/configs/s3c6400_defconfig .config
 make ARCH=arm menuconfig    to save config
