@@ -552,5 +552,6 @@ static int mmap_mem(struct file *file, struct vm_area_struct *vma)
         return -EPERM;
 
 ERROR
-    insmod      -1 Unknown symbol in module
+    insmod      -1 Unknown symbol in module     http://blogold.chinaunix.net/u/12592/showart_1671442.html
+                    not set CONFIG_MODVERSIONS & CONFIG_MODULE_FORCE_LOAD
                 -1 Invalid module format (diff kernel version between compiled & running)
