@@ -70,6 +70,11 @@ pcap:
     pcap is a copy of network main stream
     socket(PF_PACKET
     pcap_loop(handle, 0, callback, NULL);       sniff forever, because count is 0
+    struct pcap_pkthdr {
+            struct timeval ts;	/* time stamp */
+            bpf_u_int32 caplen;	/* length of portion present,           max 1514 */
+            bpf_u_int32 len;	/* length this packet (off wire)        = iph->ip_len + 14 */
+    };
 
 
 
