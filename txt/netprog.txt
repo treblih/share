@@ -57,6 +57,14 @@ The bind() function shall assign a local socket address address to a socket iden
        socket  address  assigned.  Sockets  created  with  the socket() function are initially unnamed; they are identified only by their
        address family.
 
+/* 由于IP协议簇的复杂性（如TCP的超时重传机制），在目的端可能会在先
+ * 收到一个IP包分片数据后又收到该IP包完整样式，即未分片的完整IP包。
+ * 因此，当系统收到一个IP包后，如果IP包没有被分片，首先在IP分片链
+ * 表中检查是否已经收到一些该IP包的分片数据，如果有则用此完整的
+ * 数据包代替已经收到的分片数据，即释放IP分片链表中的对应的数据，
+ * 之后将该IP包交TCP数据流重组模块。
+            IP_MF == 0 && offset == 0
+
 ip header + ip data <-> netlink header + data
     struct nlmsghdr {
         __u32 nlmsg_len;   /* Length of message */
