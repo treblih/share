@@ -45,6 +45,12 @@ host被用于hostname查找，比DNS优先级高
 
 dnsutils    host nslookup nsupdate dig
 
+nic speed:
+    ifconfig eth0 media 100baseTX
+    若出現 port: SIOCSIFMAP: Operation not supported ，可以改用 mii-tool，ethtool指令
+    mii-tool -F 100baseTx-FD eth0
+    ethtool -s eth0 speed 100 duplex full autoneg on
+
 169.254.0.0/16, for the special use in link-local addressing. These addresses are only valid on the link, such as a local network segment or point-to-point connection, that a host is connected to. These addresses are not routable and like private addresses cannot be the source or destination of packets traversing the Internet. Link-local addresses are primarily used for address autoconfiguration (Zeroconf) when a host cannot obtain an IP address from a DHCP server or other internal configuration methods.
 in ipv6, fe80: link is sth. like
 

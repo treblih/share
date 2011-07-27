@@ -11,6 +11,12 @@ source insight SI3US-721119-13700
 
 qrencode  QR code generator (二维码)
 
+nic speed:
+    ifconfig eth0 media 100baseTX
+    若出現 port: SIOCSIFMAP: Operation not supported ，可以改用 mii-tool，ethtool指令
+    mii-tool -F 100baseTx-FD eth0
+    ethtool -s eth0 speed 100 duplex full autoneg on
+
 64.120.96.213 13es213
 
 disk recover -- testdisk
@@ -64,8 +70,11 @@ mencoder -ovc lavc -lavcopts vcodec=mpeg4:vbitrate=1000:vhq -oac mp3lame -lameop
 wmv -> mpeg
 mencoder movie.wmv -o movie.mpg -ovc lavc -oac mp3lame -of mpeg
 
+getconf LONG_BIT	32
 getconf LEVEL1_ICACHE_LINESIZE LEVEL1_DCACHE_LINESIZE LEVEL2_CACHE_LINESIZE
 /sys/devices/system/cpu/cpu0/cache/index0/...
+
+sysconf - getconf 
 
 rgba support: libgladmm + gnome-color-chooser + librgba-gtk-module
 
@@ -478,8 +487,6 @@ PS3 和 PC 属不同 cpu 体系， qemu 需要动态翻译 x86 到 ppc 指令。
 
 diff2html 是一个 Bash 脚本，利用管道机制将 diff 输出结果转换为彩色的 HTML 文档，便于向他人提供易于观看的 diff 对比结果
 用法： diff -u file1 file2 | diff2htm >l result.html
-
-getconf LONG_BIT	32
 
 grep	'sth. wanted' filename
 grep 	string/mode filename
