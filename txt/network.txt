@@ -45,6 +45,15 @@ host被用于hostname查找，比DNS优先级高
 
 dnsutils    host nslookup nsupdate dig
 
+外网通过ssh访问内网的方法：
+$ ssh -f -N -R 7070:127.0.0.1:22 外网主机用户名@外网主机ip
+$ ssh 内网主机用户名@127.0.0.1 -p 7070
+原理：将外网7070的端口映射到内网主机的22端口
+外网通过ssh访问内网的方法：
+$ ssh -f -N -R 7070:127.0.0.1:22 外网主机用户名@外网主机ip
+$ ssh 内网主机用户名@127.0.0.1 -p 7070
+原理：将外网7070的端口映射到内网主机的22端口
+
 nic speed:
     ifconfig eth0 media 100baseTX
     若出現 port: SIOCSIFMAP: Operation not supported ，可以改用 mii-tool，ethtool指令
