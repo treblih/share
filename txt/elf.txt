@@ -3,6 +3,7 @@
 collect2: ld returned 1 exit status
 need libpcap.so, neither libpcap.so.1 nor libpcap.so.1.1.1
 just make a symbol link
+    or there's libpcap.a in /usr/lib, delete it
 
 
 machine a  libxxx.so.1.0.0      

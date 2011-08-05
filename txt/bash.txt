@@ -474,6 +474,7 @@ sed f1 f2 f3...     line number only has 1 NO.1
 sed 1,$d(delete 1st&last)
 a\ after; i\ above
     sed -i '/match_pattern/ \i add_sth'
+sed -n '10,15p' filename        print line 10-15 
 
 
 GREP:

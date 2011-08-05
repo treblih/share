@@ -6,6 +6,20 @@ make -C build/linux-board-compiled
 make ARCH=arm CROSS_COMPILE=armv6jel-target-linux-gnueabi- (essetial '-')
 #include <march/comcerto-1000.h>    arch/arm/mach-comcerto/include/mach/comcerto-1000.h
 
+module.c
+    #include <linux/init.h>
+    #include <linux/module.h>
+    static int __init count_init(void){return 0;}
+    static void __exit count_exit(void){}
+    module_init(count_init);
+    module_exit(count_exit);
+    MODULE_LICENSE("GPL");
+Makefile
+    obj-m := module.o
+    all:
+            make -C /lib/modules/`uname -r`/build M=`pwd` modules
+    
+
 a模块用b模块函数 只需包含头文件 .ko就是.o 可以有未解析的符号
 
 only same thing is NAME, file name, func name (ioctl), implementation is different.
