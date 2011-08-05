@@ -17,11 +17,28 @@ firebird-devel
 flamerobin to GUI control
 
 
+/*
+ * 为了控制对数据库的并发访问，对保存连接记录以及更新
+ *  table_whiteip表的事务加锁，该锁属于3级封锁协议，可以
+ * 防止Nonrepeatable Read
+ */
+if (SQL_SUCCESS != SQLSetConnectAttr(db,
+                     SQL_ATTR_TXN_ISOLATION,
+                     (void *)SQL_TXN_REPEATABLE_READ, 0)) {
+    TRACE
+        ("Failed to change the ConnectAtt isolation...<load_ipcredit>\n");
+    return FAILED;
+}
+
+
 primary key can be string float
 
 Duplicate entry 'admin' for key 'PRIMARY'   insert 'admin' for 2 times
 Duplicate entry '127' for key 'PRIMARY'     it's smallint, 127 is the biggest
 
+
+cat xxx.isql | isql -v dbname       
+    apply all sql in xxx.sql to dbname
 
 isql:
     table name case sensitive

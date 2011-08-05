@@ -264,20 +264,22 @@ gcc -std=c89 c99 gnu89 gnu99
 gcc -g -rdynamic a.c
 ./a.out arg1 --> segment fault --> core.PID
 gdb ./a.out core.PID
+    bt / frame
 gcc -dD -E a.out    output all #define in source, excluding which defined in gcc
--Wp,opt     cpp
--Wa,opt     as
--Wl,opt     ld
--D_macro    define
--U_macro    undefine
--ggdb3      for macro
--gstabs     get linux sys info more, stabs is just file format, also we have -gstab -ggdb ...
--march=i686 -mtune=generic
--q a.out    quiet start
--s a.out == ld -s == strip a.out
--MM (excluding sys headers) main.o: main.c aaa.h
--M                          main.o: main.c aaa.h stdio.h unistd.h ...
--fstrict-overflow   generate more codes to check mem overflow
+    -Wp,opt     cpp
+    -Wa,opt     as
+    -Wl,opt     ld
+    -D_macro    define
+    -U_macro    undefine
+    -ggdb3      for macro
+    -gstabs     get linux sys info more, stabs is just file format, also we have -gstab -ggdb ...
+    -march=i686 -mtune=generic
+    -q a.out    quiet start
+    -s a.out == ld -s == strip a.out
+    -MM (excluding sys headers) main.o: main.c aaa.h
+    -M                          main.o: main.c aaa.h stdio.h unistd.h ...
+    -fstrict-overflow   generate more codes to check mem overflow
+    -static     link .a, not .so
 
 locate stdarg.h:
 /usr/lib/gcc/i686-pc-mingw32/4.4.1/include/stdarg.h
@@ -507,6 +509,7 @@ grep	-i ignore case
 	-v excluding
 	-b byte-offset of the line printed
 	-o only print the matched part out
+    --include="*.c"     only apply to c file
 
 grep			\{\}
 grep -E == egrep	{}
@@ -741,6 +744,11 @@ git checkout master
 git merge a_brch_want_merge
 
 every "committed" part would be drawn back
+
+.git/info/exclude
+    *.exe       to exclude all exe in recursive path
+    !a.exe      negated exclude a.exe in current dir
+
 
 /etc/bash_completion.d	auto loaded, just like ~/.vim
 

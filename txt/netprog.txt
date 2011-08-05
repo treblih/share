@@ -2,6 +2,17 @@ tfn2k fprobe rinetd
 
 libnids提供了tcp流重组功能，这是lipcap所不具备的
 
+iph host-endian: 
+    ip_v
+    ip_h
+    ip_tos
+    ip_ttl
+    ip_p
+
+<netinet/ip.h>  struct ip
+struct tcphdr udphdr, and another struct iphdr
+    
+
 常用的Socket类型有两种：流式Socket（SOCK_STREAM, TCP）和数据报式Socket（SOCK_DGRAM, UDP）
 两个网络程序之间的一个网络连接包括五种信息：通信协议、本地协议地址、本地主机端口、远端主机地址和远端协议端口
 
@@ -74,7 +85,16 @@ ip header + ip data <-> netlink header + data
         __u32 nlmsg_pid;   /* Sending process PID */
     };
 
+nfq:
+    can drop pack
+    1 pack can only be sent to 1 queue
+    can only get src-mac, no dst-mac
+    has mac-frame upper limit, drop the pack which is too large, i.e. 5k+
+
 pcap:
+    can't drop pack, coz just a copy from kernel
+    only 1 thread, can't use multi
+    can get src-mac & dst-mac
     pcap is a copy of network main stream
     socket(PF_PACKET
     pcap_loop(handle, 0, callback, NULL);       sniff forever, because count is 0
