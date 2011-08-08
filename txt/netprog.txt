@@ -85,6 +85,14 @@ ip header + ip data <-> netlink header + data
         __u32 nlmsg_pid;   /* Sending process PID */
     };
 
+socket打开混杂模式
+    先sock=socket(PF_PACKET, SOCK_RAW,htons(ETH_P_IP)) 的方式打开Socket，然后再 
+    ioctl(sock, SIOCGIFFLAGS, &ethreq); 
+    ethreq.ifr_flags |= IFF_PROMISC; 
+    ioctl(sock, SIOCSIFFLAGS, &ethreq); 
+    打开混杂模式。 
+    其实也就是Libpcap的实现方式吧？ 
+
 nfq:
     can drop pack
     1 pack can only be sent to 1 queue
@@ -96,6 +104,7 @@ pcap:
     only 1 thread, can't use multi
     can get src-mac & dst-mac
     pcap is a copy of network main stream
+    got a frame, but frame has no info about direction, so can't use in waf like device
     socket(PF_PACKET
     pcap_loop(handle, 0, callback, NULL);       sniff forever, because count is 0
     struct pcap_pkthdr {
@@ -103,6 +112,7 @@ pcap:
             bpf_u_int32 caplen;	/* length of portion present,           max 1514 */
             bpf_u_int32 len;	/* length this packet (off wire)        = iph->ip_len + 14 */
     };
+
 
 
 
