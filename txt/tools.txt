@@ -11,6 +11,18 @@ source insight SI3US-721119-13700
 
 qrencode  QR code generator (二维码)
 
+system status:
+    uptime
+    mpstat          smp
+    pmap -d pid     process mem eat
+
+gprof
+    gcc -g -O0 -pg
+    ./a.out
+    gprof ./a.out xx.out(binary) > a.txt
+    gprof2dot a.txt > a.dot
+    dot -Tpng -o a.png
+
 nic speed:
     ifconfig eth0 media 100baseTX
     若出現 port: SIOCSIFMAP: Operation not supported ，可以改用 mii-tool，ethtool指令
