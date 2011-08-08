@@ -4,6 +4,11 @@ collect2: ld returned 1 exit status
 need libpcap.so, neither libpcap.so.1 nor libpcap.so.1.1.1
 just make a symbol link
 
+make a func from .cpp to be called from .c
+    extern "C" int func
+    {
+
+    }
 
 left-inclusive interval
 	-- includes first and each element up to but not including last

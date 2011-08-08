@@ -1,3 +1,9 @@
+make a func from .cpp to be called from .c
+    extern "C" int func
+    {
+
+    }
+
 任何一个全局的变量,结构体/类定义,都要放在namespace里面(如果找不到就放匿名namespace).对于库的开发者而言,更应该注意这一点,否则把库交付出去使用,使用者同样定义了一个不在namespace里面的同名结构体,而又看不到库的实现里面有个同名的结构体,都不知道如何定位问题
 
 string != normal c string
