@@ -3,3 +3,81 @@ almost all locks are implemented in userspace, for efficient
 multithread then fork, child process clones all locks but discards all threads
 多线程程序 fork 前，应该由发起 fork 的线程 lock 所有子进程可能用到的锁，fork 后，把它们一一 unlock 
 当然，这样的做法就隐含了锁的次序。如果次序和平时不同，那么就会死锁。
+
+all mutual:
+    spinlock        spin
+    semaphore       block then process context switch
+writer to reader:
+    rwlock          spin, reader is prior
+    seqlock         spin, writer is prior, if changed during reading, read again
+    rcu             spin, reader is prior, just for pointed contents, not pointer itself
+
+
+rcu: 
+from Documentation/RCU/whatisRCU.txt
+more example in listRCU.txt arrayRCU.txt checklist.txt
+	         CPU 0                  CPU 1                 CPU 2
+	     ----------------- ------------------------- ---------------
+	 1.  rcu_read_lock()
+	 2.                    enters synchronize_rcu()
+	 3.                                               rcu_read_lock()
+	 4.  rcu_read_unlock()
+	 5.                     exits synchronize_rcu()
+	 6.                                              rcu_read_unlock()
+
+	To reiterate, synchronize_rcu() waits only for ongoing RCU
+	read-side critical sections to complete, not necessarily for
+	any that begin after synchronize_rcu() is invoked.
+
+	The call_rcu() API is a callback form of synchronize_rcu(),
+	and is described in more detail in a later section.  Instead of
+	blocking, it registers a function and argument which are invoked
+	after all ongoing RCU read-side critical sections have completed.
+	This callback variant is particularly useful in situations where
+	it is "illegal to block" or where "update-side performance is
+	critically important".
+
+    rcu_assign_pointer(p, v);
+ * this call documents which pointers will be dereferenced by RCU read-side code.
+    rcu_assign_pointer() is most frequently used indirectly, via
+    the _rcu list-manipulation primitives such as list_add_rcu().
+
+    rcu_dereference(p)
+	Common coding practice uses rcu_dereference() to copy an
+	RCU-protected pointer to a local variable, then dereferences
+	this local variable, for example as follows:
+
+		p = rcu_dereference(head.next);
+		return p->data;
+
+	However, in this case, one could just as easily combine these
+	into one statement:
+
+		return rcu_dereference(head.next)->data;
+
+    /* write part also need lock for concurrence */
+	void foo_update_a(int new_a)
+	{
+		struct foo *new_fp;
+		struct foo *old_fp;
+
+		new_fp = kmalloc(sizeof(*new_fp), GFP_KERNEL);
+		spin_lock(&foo_mutex); 
+		old_fp = gbl_foo;
+		*new_fp = *old_fp;
+		new_fp->a = new_a;
+		rcu_assign_pointer(gbl_foo, new_fp);
+		spin_unlock(&foo_mutex);
+		synchronize_rcu();
+		kfree(old_fp);
+	}
+    /* read part need no lock */
+	int foo_get_a(void)
+	{
+		int retval;
+
+		rcu_read_lock();
+		retval = rcu_dereference(gbl_foo)->a;
+		rcu_read_unlock();
+		return retval;
+	}
