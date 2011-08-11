@@ -16,7 +16,7 @@ system status:
     mpstat          smp
     pmap -d pid     process mem eat
 
-gprof
+gprof (need exit itself, can't be killed or SIGINT)
     gcc -g -O0 -pg
     ./a.out
     gprof ./a.out xx.out(binary) > a.txt
@@ -137,6 +137,9 @@ $ ssh 内网主机用户名@127.0.0.1 -p 7070
 $ ssh -f -N -R 7070:127.0.0.1:22 外网主机用户名@外网主机ip
 $ ssh 内网主机用户名@127.0.0.1 -p 7070
 原理：将外网7070的端口映射到内网主机的22端口
+
+/etc/ssh/ssh_config
+/etc/ssh/sshd_config    port/protocol/login user/...
 
 win -> lin  ssh
 lin -> win  rdesktop
@@ -277,6 +280,10 @@ gcc -g -rdynamic a.c
 ./a.out arg1 --> segment fault --> core.PID
 gdb ./a.out core.PID
     bt / frame
+    display mem range
+        x /range hex/dec/oct/bin byte/half(2)/word(4)/giant(8)
+        x /n(h|d|o|b)(b|h|w|g) 0x.......
+
 gcc -dD -E a.out    output all #define in source, excluding which defined in gcc
     -Wp,opt     cpp
     -Wa,opt     as

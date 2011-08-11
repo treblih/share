@@ -43,6 +43,7 @@ Musibolun: "中国人走到国外，时常觉得被人看不起，只好用各�
 
 你必须要有大段大段整理数学式子的能力
 “你要有大量整理字符串的能力”，整理字符串的过程中体现的是你的组织能力和，折射出的是你的算法思想。
+
 只要是没有人为因素的纯技术问题，是一定一定有解决办法的
 
 error while loading shared libraries: cannot open shared object file: No such file or directory
