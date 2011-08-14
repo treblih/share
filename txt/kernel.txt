@@ -18,7 +18,9 @@ Makefile
     obj-m := module.o
     all:
             make -C /lib/modules/`uname -r`/build M=`pwd` modules
-    
+
+memmap=256M@0x80000000      make kernel only use 256M base on 0x80000000
+mem=256M@0x80000000         make kernel ignore 256M base on 0x80000000
 
 a模块用b模块函数 只需包含头文件 .ko就是.o 可以有未解析的符号
 

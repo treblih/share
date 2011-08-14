@@ -10,6 +10,10 @@ ack num = seq num + 1
 
 10/100m自适应   对端多少我就多少
 
+如果想定死网卡的名字可以使用ifrename
+    man ifrename; iftab
+    /etc/iftab
+
 mii-tool -v   
 ethtool eth0
     check nic info, for 100M, MTU is 1500

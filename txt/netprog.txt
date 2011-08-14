@@ -16,6 +16,9 @@ struct tcphdr udphdr, and another struct iphdr
 常用的Socket类型有两种：流式Socket（SOCK_STREAM, TCP）和数据报式Socket（SOCK_DGRAM, UDP）
 两个网络程序之间的一个网络连接包括五种信息：通信协议、本地协议地址、本地主机端口、远端主机地址和远端协议端口
 
+linux下，如果一个进程帮定某个port，那当进程结束时，该port仍然会被继续占用几十秒，在这段时间内尝试对
+该port的绑定都会返回失败。解决方法：调用setsockopt()启用SO_REUSERADDR属性
+
 struct sock     kernel net
 struct socket   interface to userspace
 

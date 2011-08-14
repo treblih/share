@@ -19,8 +19,6 @@ otherwise		dense  / undirect	matrix
 
 list可以无限调整大小，array只能在最开始确定大小
 
-要处理的数据越多，构造哈希表时分配的槽也应该越多
-
 perfect hash function -- give a data, get a hash value, no 2 different data have the same calculated_val
 
 optimization:	I/O, memory-management
