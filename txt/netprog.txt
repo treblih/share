@@ -88,13 +88,16 @@ ip header + ip data <-> netlink header + data
         __u32 nlmsg_pid;   /* Sending process PID */
     };
 
-socket打开混杂模式
-    先sock=socket(PF_PACKET, SOCK_RAW,htons(ETH_P_IP)) 的方式打开Socket，然后再 
-    ioctl(sock, SIOCGIFFLAGS, &ethreq); 
-    ethreq.ifr_flags |= IFF_PROMISC; 
-    ioctl(sock, SIOCSIFFLAGS, &ethreq); 
-    打开混杂模式。 
-    其实也就是Libpcap的实现方式吧？ 
+nf: (never see type 3 PACKET_OTHERHOST)
+    add abr, with eth0/1, ping through the netbox to a machine bebind it
+    pre_routing (bidirection):
+        dev->name=abr, skb->dev->name=abr, pkt_type 0/2
+    forward (bidirection):
+        dev->name=abr, skb->dev->name=eth0/1 (direction info), pkt_type 0/2
+    ipv4/ip_input.c/ip_rcv() (only in):
+        some dev is abr, but can't catch what i want (i.e. ping pkt to the machine bebind the netbox), pkt_type 0/1/2
+        
+
 
 nfq:
     can drop pack
@@ -116,6 +119,13 @@ pcap:
             bpf_u_int32 len;	/* length this packet (off wire)        = iph->ip_len + 14 */
     };
 
+    socket打开混杂模式
+    先sock=socket(PF_PACKET, SOCK_RAW,htons(ETH_P_IP)) 的方式打开Socket，然后再 
+    ioctl(sock, SIOCGIFFLAGS, &ethreq); 
+    ethreq.ifr_flags |= IFF_PROMISC; 
+    ioctl(sock, SIOCSIFFLAGS, &ethreq); 
+    打开混杂模式。 
+    其实也就是Libpcap的实现方式吧？ 
 
 
 

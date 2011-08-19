@@ -163,6 +163,15 @@ sy 内核空间占用CPU百分比
 ni 用户进程空间内改变过优先级的进程占用CPU百分比 
 id 空闲CPU百分比 
 wa 等待输入输出的CPU时间百分比 
+           us = user mode
+           sy = system mode
+           ni = low priority user mode (nice)
+           id = idle task
+           wa = I/O waiting
+           hi = servicing IRQs
+           si = servicing soft IRQs
+           st = steal (time given to other DomU instances)
+
 
 $ date -d @1234567890
 Sat Feb 14 07:31:30     2009

@@ -28,6 +28,7 @@ netfilter不能截获第3种包，除非你修改内核，或者利用bridge的b
 
 route add -net 192.168.9.0 netmask 255.255.255.0 dev eth0
 route add -host 192.168.9.3 gw 192.168.9.1
+or route add default gw 192.168.9.1
 
 混杂模式就是接收所有经过网卡的数据包，包括不是发给本机的包。默认情况下网卡只把发给本机的包（包括广播包）传递给上层程序，其它的包一律丢弃。
 简单的讲,混杂模式就是指网卡能接受所有通过它的数据流，不管是什么格式，什么地址的。具体的地址转发则是在接受到数据后由MAC层来进行。
@@ -317,6 +318,13 @@ Address                  HWtype  HWaddress           Flags Mask            Iface
 
 翻墙的 tunnel 还是自己写，私有协议的好。不会被封。而且比正规的加密 tunnel 性能要好的多。毕竟只需要绕开墙的检查就可以了。保密可以由更上层来做，比如用 https 访问。
 
+brctl:
+    brctl addbr abr
+    brctl addif abr eth0; ifconfig eth0 0.0.0.0 promisc
+    brctl addif abr eth1; ifconfig eth1 0.0.0.0 promisc
+    ifconfig abr up
+    route add default gw 192.168.9.1
+
 add 
 ONBOOT="yes"
 BOOTPROTO="dhcp"    to /etc/sysconfig/network-scripts/ifcfg-eth0, kill NetworkManager, /etc/init.d/network restart, net works also
@@ -390,6 +398,15 @@ rinetd -- internet ``redirection server''
 将所有发往本地的23端口的请求转发到10.1.1.2
 许可访问 allow 206.125.69.*
 日志记录 logfile /var/log/rinetd.log
+
+vlan:      
+    switch              box         server
+   +------+           +------+     +----+  no vconfig in box, traffic is ok, but box can only sniff pack in ebtables/tcpdump, not iptables
+   |      +--vlan1----+      +-----+    |  if use vconfig, eth0.0-br0.0-eth1.0, only traffic of vlan1 ok, other vlanX jams.
+   |      |           |      |     |    |  so need to vconfig every eth0.X-br0.X-eth1.X
+   |      +--vlan2    |      |     +----+
+   |      |           |      |
+   +------+           +------+
 
 
 IPv6:
