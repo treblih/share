@@ -88,6 +88,8 @@ getconf LEVEL1_ICACHE_LINESIZE LEVEL1_DCACHE_LINESIZE LEVEL2_CACHE_LINESIZE
 
 sysconf - getconf 
 
+我一般都用 cp -rpa ，可以保留以前的所有文件属性，包括软链接
+
 rgba support: libgladmm + gnome-color-chooser + librgba-gtk-module
 
 Mt3QUhmG
@@ -948,6 +950,15 @@ ulimit -a   show all limit
 /etc/security/limits.conf
     @wheel soft nofile 4096
     @wheel hard nofile 8192     soft&hard both set, otherwise useless
+
+core dump:
+    dmesg 
+        testseg[26063]: segfault at 0000000000000000 rip 0000000000400470 rsp 0000007fbffff8a0 error 6
+    error code 6
+        bit2: 值为1表示是用户态程序内存访问越界，值为0表示是内核态程序内存访问越界
+        bit1: 值为1表示是写操作导致内存访问越界，值为0表示是读操作导致内存访问越界
+        bit0: 值为1表示没有足够的权限访问非法地址的内容，值为0表示访问的非法地址根本没有对应的页面，也就是无效地址 
+    addr2line -e testseg 0000000000400470
 
 !!gs/old/new
 =============================================================================================================
