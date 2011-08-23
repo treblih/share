@@ -90,10 +90,11 @@ ip header + ip data <-> netlink header + data
 
 nf: (never see type 3 PACKET_OTHERHOST)
     add abr, with eth0/1, ping through the netbox to a machine bebind it
-    pre_routing (bidirection):
+    ip_pre_routing (bidirection):
         dev->name=abr, skb->dev->name=abr, pkt_type 0/2
-    forward (bidirection):
+    ip_forward (bidirection):
         dev->name=abr, skb->dev->name=eth0/1 (direction info), pkt_type 0/2
+    br_pre_routing:
     ipv4/ip_input.c/ip_rcv() (only in):
         some dev is abr, but can't catch what i want (i.e. ping pkt to the machine bebind the netbox), pkt_type 0/1/2
         
