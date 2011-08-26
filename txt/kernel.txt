@@ -575,3 +575,5 @@ ERROR
                 it's ok to insert the base one, but relying ones can't be inserted.
             dmesg to show details
         -1 Invalid module format (diff kernel version between compiled & running)
+    make
+        warning: function declaration isn’t a prototype  a() -> a(void)
