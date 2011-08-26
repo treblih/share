@@ -44,7 +44,11 @@ docbook-utils
 yum install jadetex
 make pdfdocs
 
-64b workstation - 32b kernel - 8g memory
+内核提供一个内核线程keventd，用来提供进程上下文。 schedule_work()，如果你的内核是2.6的 或者schedule_task()，如果你的内核是2.4的
+已被workqueue取代
+
+有以一般一般额已被已被workqueue的大的去去驱动去打取代取代
+有以一般一般额已被已被workqueue的大的去去驱动去打取代取代ry
 no PAE: 3.3g in total; PAE: 8.2g in total
 
 arch/xxx/include/asm/unistd.h   all syscall num
