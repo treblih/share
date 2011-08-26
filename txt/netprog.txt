@@ -96,7 +96,7 @@ nf: (never see type 3 PACKET_OTHERHOST)
         dev->name=abr, skb->dev->name=eth0/1 (direction info), pkt_type 0/2
     br_pre_routing:
     ipv4/ip_input.c/ip_rcv() (only in):
-        some dev is abr, but can't catch what i want (i.e. ping pkt to the machine bebind the netbox), pkt_type 0/1/2
+        some dev is abr, but can't catch what i want (i.e. ping pkt to the machine bebind the netbox), pkt_type 0/1/2/(3)
         
 
 

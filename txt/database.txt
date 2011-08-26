@@ -5,7 +5,7 @@ mysql-5.1.51-2.fc14.i686
 mysql-server-5.1.51-2.fc14.i686
 libdbi-dbd-mysql-0.8.3-6.fc14.i686
 mysql-libs-5.1.51-2.fc14.i686
-mysql-connector-odbc-5.1.5r1144-7.fc13.i686
+mysql-connector-odbc-5.1.5r1144-7.fc13.i686 (libmyodbc for apt-get)
 unixODBC-2.2.14-12.fc14.i686            -lodbc
 unixODBC-devel-2.2.14-12.fc14.i686      sql.h sqlext.h
 iodbc                                   gui tool, iodbcadm-gtk to start
