@@ -22,6 +22,12 @@ Makefile
 memmap=256M@0x80000000      make kernel only use 256M base on 0x80000000
 mem=256M@0x80000000         make kernel ignore 256M base on 0x80000000
 
+/etc/sysctl.conf
+    kernel.panic = n
+    kernel.panic_on_oops = n
+    kernel.softlockup_panic = n
+    kernel.hung_task_panic = n
+
 a模块用b模块函数 只需包含头文件 .ko就是.o 可以有未解析的符号
 
 only same thing is NAME, file name, func name (ioctl), implementation is different.
@@ -469,9 +475,9 @@ GFP	get free page
 
 VA == kernel VA(logical addr, constant offset, low 896m) + user VA
 
-void * kmalloc(int count, GFP_KERNEL);		process context
-void * kmalloc(int count, GFP_ATOMIC);		interrupt context
-void * vmalloc(unsigned long int);		process context
+void * kmalloc(int count, GFP_KERNEL);	process context
+void * kmalloc(int count, GFP_ATOMIC);	interrupt context
+void * vmalloc(unsigned long int);		process context (use kmalloc(GFP_KERNEL) to acquire storage for the page tables)
 
 sleep == interruptible(when signals comes) + uninterruptible
 
@@ -517,6 +523,23 @@ When programmers talk of breakpoints they usually are referring to software brea
 feel free to choose your own location for Debugfs
 
 选择 tracer 的控制文件叫作 current_tracer 
+
+
+timer_list:
+    del_timer_syn();  may release some resources which timer is using, so del_timer_syn() instead of del_timer()
+    kfree(xxx);
+    
+retrieve huge memory:
+    contineous physical memory:
+        1. kmalloc at max 4M;
+        2. boot args; io_request_region(); ioremap() at max 16M;
+        3. an_export_symbol = alloc_bootmem() (init/main.c:start_kernel(), before mm_init())
+    discontinuous:
+        1. vmalloc, boot arg vmalloc=xxM to increase high mem, insmod/modprobe use it to alloc space for a module
+           test_bit() set_bit() will crash kernel, also tried non-asm version (from arch alpha), 
+           because of page_fault (do_page_fault) ?
+           inefficient, memset(48M) 0.014s, while memset(512M) on contineous mem only 0.002s, TLB miss alot
+        2. kmap
 
 
 1.进入中断处理程序--->2.保存关键上下文---->3.开中断（sti指令）--->4.进入中断处理程序的handler--->5.关中断（cli指令）---->6.写EOI寄存器（表示中断处理完成）---->7.开中断。
