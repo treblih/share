@@ -1,3 +1,5 @@
+大话处理器
+
 git://git.kernel.org/pub/scm/linux/kernel/git/paulmck/perfbook.git   parallel book
 
 source insight SI3US-721119-13700
@@ -42,6 +44,7 @@ ramdisk:
    cp file /mount
 
 watch execute a program periodically, showing output fullscreen
+watch -d (highlight) -n 1 "ifconfig eth0 | grep bytes"
 
 create pipe:
     mkfifo /opt/antiddos/common/log/attack-log.pipe
@@ -1193,4 +1196,6 @@ rpm:
 rpm -qa (query all) | grep xxx
 rpm -e xxx (delete)
 rpm -ql xxx (find all installed path)
+rpm -qf /etc/rsyslog.conf
+        % sysklogd-1.4.1-44.el5
 

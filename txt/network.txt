@@ -3,6 +3,8 @@
 
 解决互联网地址短缺的首选“正统”方案是IPv6，而不是NAT，是因为IETF认为NAT破坏了互联网“端到端透明性”的核心思想，是有害于互联网的发展的
 
+curl ifconfig.me    show my public ip
+
 SYN ACK FIN PSU URG RST
 1st seq num is random int, 1st ack number is that num + data lenth
 but syn pack has no data, TCP regard it as having 1 byte, then 
