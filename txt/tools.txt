@@ -77,6 +77,8 @@ svn co https://192.168.9.2:8443/svn/linuxwaf/trunk
 
 man -t xxx | ps2pdf - xxx.pdf
 
+gpasswd -a hask wheel
+
 mpeg -> wmv
 mencoder -ovc lavc -lavcopts vcodec=mpeg4:vbitrate=1000:vhq -oac mp3lame -lameopts br=98 -o wsf.wmv wsf.mpeg
 wmv -> mpeg
