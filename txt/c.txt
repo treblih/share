@@ -297,7 +297,7 @@ void signal(int signum, sighandler_t handler);
 
 n = read(0, input, (INPUTLEN-1)); input[n] = '\0';
 
-sigset_t == long int	has a bit for each signal (4 bytes == 31 signals)
+sigset_t == long int	one signal per bit (4 bytes == 31 signals)
 
 modify directly, no need GET-MODIFY-SET:
 setitimer(int which_timer,	const struct itimerval * new, struct itimerval * old);
