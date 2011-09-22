@@ -25,7 +25,7 @@ mem=256M@0x80000000         make kernel ignore 256M base on 0x80000000
 /etc/sysctl.conf        /proc/sys/kernel/...
     kernel.panic = n
     kernel.panic_on_oops = n
-    kernel.softlockup_panic = n
+    kernel.softlockup_panic = 1 or 0
 # panic if a hung task was found
     kernel.hung_task_panic = 1(true) or 0(false)
 # setup timeout for hung task to n seconds
@@ -633,3 +633,9 @@ ERROR
         -1 Invalid module format (diff kernel version between compiled & running)
     make
         warning: function declaration isn’t a prototype  a() -> a(void)
+
+        "__fixdfsi" [a.ko] undefined!
+        "__muldf3" [a.ko] undefined!
+        "__extendsfdf2" [a.ko] undefined!
+        This's happening coz we're trying to do some floating point values. Use inline assembly to get read of it,
+        use only FPU instructions.

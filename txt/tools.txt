@@ -186,7 +186,7 @@ Sat Feb 14 07:31:30     2009
 sshfs user@server:/path localpath
 fusermount -u /path or umount /path
 
-cfdisk partprobe mkfs.xxx
+cfdisk -> partprobe -> reboot (coz /dev/sdaNEW maybe not exists) -> mkfs.xxx
 umount && mount to flush /dev/sdb*
 mkfs.ntfs /dev/sdb8
 
