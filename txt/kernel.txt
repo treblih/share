@@ -49,6 +49,32 @@ mkinitcpio dracut initramfs-2.6.38.img
 
 if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,31)
 
+debug trace:
+    start_kernel
+    cpu_idle
+    mwait_idle
+    common_interrupt
+    do_IRQ
+    irq_exit
+    do_softirq
+    __do_softirq
+    net_rx_action
+    e1000_clean
+    e1000_clean_rx_irq
+    netif_receive_skb
+    br_handle_frame_finish
+    br_handle_frame
+    br_handle_frame_finish
+    nf_hook_slow
+    br_handle_frame_finish
+    nf_iterate
+    hook_counter
+    do_page_fault
+    error_code
+    bad_area_nosemaphore
+    do_page_fault
+    release_console_sem
+
 docbook-utils
 yum install jadetex
 make pdfdocs

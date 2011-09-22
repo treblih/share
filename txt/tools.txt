@@ -471,8 +471,9 @@ m4	macro preprocessor
 
 diff -Naur a_orig a > a.patch
 cd a_org
-patch -Np1(omit the 1st dir) < ../a.patch; patch -RNp1 < .patch(reverse)
-(should be a_orig not a_orig/):
+patch -Np1(omit the 1st dir) < ../a.patch;
+patch -RNp1 < .patch(reverse)
+(should be a_orig not a_orig/), otherwise:
 --- FVCOM_source_orig//alloc_vars.F	2011-01-10 18:03:34.353340271 +0800
 +++ FVCOM_source//alloc_vars.F	2011-01-10 18:03:27.450006939 +0800
 
