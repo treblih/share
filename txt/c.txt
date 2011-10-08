@@ -700,17 +700,19 @@ typedef typeof(expr) T;		catch the type
 int a __attribute__ ((__cleanup__(func_symbol)));	must be a func symbol, not the addr
 
 Other variations of exec abound:
-
 int execl(const char *path, const char *arg, ...);
 int execlp(const char *file, const char *arg, ...);
 int execle(const char *path, const char *arg, ..., char * const envp[]);
 int execv(const char *path, char *const argv[]);
 int execvp(const char *file, char *const argv[]);
 int execve(const char *path, char );
-v : use array of arguments
-e: Specify as well the environment
-l: list arg on function
-p: use $PATH to locate executable file
+v-l
+    v: vector, array of args
+    l: list arg
+e-p
+    e: specify as well the environment
+    p: use $PATH to locate executable file
+so execvp is the most useful for me, execvp("a.out", NULL);
 
 -tmp & tmp
 对偶数 不变

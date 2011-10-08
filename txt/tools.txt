@@ -82,6 +82,11 @@ man -t xxx | ps2pdf - xxx.pdf
 
 gpasswd -a hask wheel
 
+/etc/rc.d/init.d/functions  redhat
+/lib/lsb/init-functions     ubuntu      
+    start-stop-daemon  --oknodo
+    If such a process exists, start-stop-daemon does nothing, and exits with error status 1 (0 if --oknodo is specified)
+
 mpeg -> wmv
 mencoder -ovc lavc -lavcopts vcodec=mpeg4:vbitrate=1000:vhq -oac mp3lame -lameopts br=98 -o wsf.wmv wsf.mpeg
 wmv -> mpeg

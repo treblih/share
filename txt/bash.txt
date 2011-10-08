@@ -31,6 +31,15 @@ as
 $ expr index "jaseywang.info" a
 2
 
+is_run()
+{
+    res=`ps aux | grep $1 | wc -l`
+    if [[ $res > 1 ]]; then
+        echo running                            res=`is_run gvim`, res is always 'running'
+        or return 1                             if there's return, $? to get the retval
+    fi
+}
+
 cmd test like in C,
     if [[ `cmd` ]] ; then ... fi
 
