@@ -11,6 +11,11 @@ source insight SI3US-721119-13700
 
 /etc/issue /etc/issue.net   are shown before login
 
+for /etc/apt/source.list
+    deb http://mirrors.163.com/debian lenny contrib main non-free
+    deb-src http://mirrors.163.com/debian lenny contrib main non-free
+
+
 qrencode  QR code generator (二维码)
 
 system status:
@@ -79,6 +84,11 @@ svn co http://xxx/projname projname
 svn co https://192.168.9.2:8443/svn/linuxwaf/trunk
 
 man -t xxx | ps2pdf - xxx.pdf
+man xxx | col -bx > xxx.txt
+    -b:删除回车符，即删除 ^M 
+    -x:将 tab 变为等效的 space，最终效果会使得 ls.txt 的排版更加整齐
+    如果是在 vim 中直接打开没有经过 col 转换的文件，可以执行类似的命令：
+    :% !col -bx
 
 gpasswd -a hask wheel
 
@@ -1021,9 +1031,9 @@ vim72/src/Makefile, add below
 	CONF_OPT_INPU		= --enable-xim
 	CONF_OPT_MULTIBYTE	= --enable-multibyte
 	CONF_OPT_FEAT		= --with-features=huge
-        CONF_OPT_OUTPUT         = --enable-fontset  # X fontset support, 
-        CONF_OPT_COMPBY = “–with-compiledby=Yang Zhang<armx86@gmail.com>”
-	prefix			= $(HOME)
+    CONF_OPT_OUTPUT     = --enable-fontset  # X fontset support, 
+    CONF_OPT_COMPBY     = “–with-compiledby=Yang Zhang<armx86@gmail.com>”
+	prefix			    = $(HOME)
         Warning: Missing charsets in String to FontSet conversion
         Warning: Unable to load any usable fontset
         Warning: Missing charsets in String to FontSet conversion

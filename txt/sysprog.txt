@@ -85,7 +85,7 @@ pthread:
         pthread_mutex_t mutex;  
         int value;  
     } my_struct_t;  
-    my_struct_t data = { PTHREAD_MUTEX_INITIALIZER, 0};  
+    my_struct_t data = {PTHREAD_MUTEX_INITIALIZER, 0};  
     如果线程不希望被阻塞，则可以调用pthread_mutex_trylock尝试对互斥量进行加锁，当互斥量没有被加锁，则函数返回0，并锁住互斥量，否则会失败，返回EBUSY
     mutex应该多大？这里的大小是相对的，如mutex锁定到解锁之间的代码只有一行，比起有10行的就小了。 原则是：尽可能大，但不要太大
     考虑下面的因素：1> mutex并不是免费的，是有开销的，不要太小了，太小了程序只忙于锁定和解锁了。
@@ -97,9 +97,9 @@ pthread:
     防止线程结束后内存泄漏的解决方法有三个:
     1. 线程里面调用 pthread_detach(pthread_self()) 这个方法最简单
     2. 创建线程后用 pthread_join() 一直等待子线程结束
-        这个函数是一个线程阻塞的函数，调用它的函数将一直等待到被等待的线程结束为止
-        此函数用于进程和线程的同步，防止主线程提前结束，致使其它线程无法执行
-        join() is a method of "waiting & process<->threads synchronization"
+       这个函数是一个线程阻塞的函数，调用它的函数将一直等待到被等待的线程结束为止
+       此函数用于进程和线程的同步，防止主线程提前结束，致使其它线程无法执行
+       join() is a method of "waiting & process<->threads synchronization"
     3. 在创建线程的设置PTHREAD_CREATE_DETACHED属性
        pthread_attr_t attr;
        pthread_t thread;
