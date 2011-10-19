@@ -31,6 +31,11 @@ as
 $ expr index "jaseywang.info" a
 2
 
+D_NONE="\033[m"
+D_RED="\033[0;32;31m"
+D_GREEN="\033[0;32;32m"
+echo -e "${D_RED}hello${D_NONE}"
+
 is_run()
 {
     res=`ps aux | grep $1 | wc -l`

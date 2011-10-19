@@ -22,6 +22,8 @@ linux下，如果一个进程帮定某个port，那当进程结束时，该port�
 struct sock     kernel net
 struct socket   interface to userspace
 
+physdev match: using --physdev-out in the OUTPUT, FORWARD and POSTROUTING chains for non-bridged traffic is not supported anymore
+
 int socket(int domain/family, int type, int protocol/family mem);
 
 AF_ address family
