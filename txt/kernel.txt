@@ -22,14 +22,16 @@ Makefile
 memmap=256M@0x80000000      make kernel only use 256M base on 0x80000000
 mem=256M@0x80000000         make kernel ignore 256M base on 0x80000000
 
+physdev match: using --physdev-out in the OUTPUT, FORWARD and POSTROUTING chains for non-bridged traffic is not supported anymore
+
 /etc/sysctl.conf        /proc/sys/kernel/...
     kernel.panic = n
     kernel.panic_on_oops = n
     kernel.softlockup_panic = 1 or 0
-# panic if a hung task was found
-    kernel.hung_task_panic = 1(true) or 0(false)
 # setup timeout for hung task to n seconds
     kernel.hung_task_timeout_secs = n
+# panic if a hung task was found
+    kernel.hung_task_panic = 1(true) or 0(false)
 
 a模块用b模块函数 只需包含头文件 .ko就是.o 可以有未解析的符号
 

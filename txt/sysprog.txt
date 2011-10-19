@@ -143,3 +143,17 @@ signal:
     postpone an alarm
         int leaving_time = alarm(0); ....
         alarm(leaving_time);
+
+    struct sigaction sig;
+    sig.sa_handler = sig_handler;
+    sigemptyset(&sig.sa_mask);
+    /* sigaddset(&sig.sa_mask, SIGINT); */      is just a set, to be used somewhere
+    /* sigaddset(&sig.sa_mask, SIGTERM); */
+    sig.sa_flags = 0;
+    if (sigaction(SIGINT, &sig, NULL) < 0) {    this is the right way to set a certain signal handler
+        TRACE_WARN("failed to register signal handler for SIGNIT\n");
+    }
+    /* default signal of start-stop-daemon --stop */
+    if (sigaction(SIGTERM, &sig, NULL) < 0) {
+        TRACE_WARN("failed to register signal handler for SIGNIT\n");
+    }

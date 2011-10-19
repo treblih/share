@@ -522,6 +522,9 @@ system-config-boot/display/...		check'n change sys config
 after install nVIDIA's drive, the monitor would be so faint, just run "system-config-display"
 
 monit -d seconds    to overrides 'set daemon seconds' in monitrc
+/etc/default/monit
+    startup=1;
+    CHECK_INTERVALS=180
 
 /etc/yum/plugins/plugin.conf	--> 	if ENABLED=0, then the corresponding plugin wouldn't run with yum
 
