@@ -104,8 +104,8 @@ of swing, not in energy. To suppress multipath, SNR is a pragmatic post-processi
 Phase difference is more sensitive than SNR to the position of antenna, so that analyzing SNR is a way to estimate the measurement error. 
     The antenna can receive and send signals. Whatever receiving or sending, the character coefficients won't change. SNR is one of them. From it's name 
 we know that it's signal / noise. There are lots of factors effect SNR, such as multipath strength, gain character of antenna, devices status in track 
-ring inside receiver.
-    The PLL ring tracks the compound signal, according to the theory of electromagnetic wave, signal can be expressed as complex form:
+loop inside receiver.
+    The PLL loop tracks the compound signal, according to the theory of electromagnetic wave, signal can be expressed as complex form:
         r = Ae ** j
 A is swing; 'fai' is signal phase; J is unit of complex number. Normally ai is always small for the multipath signal, as mentioned by [6]
     formula group 1
@@ -138,6 +138,21 @@ residual phase diagram. After corrected by SNR method, residual phases are all p
 precision is highly improved.
 
 
+《GPS 动态监测中多路径效应的规律性研究》
+Huang Shengxiang, Li Peihong, Yang Baocen, Xiang Dong did a research of applying filtering and all-day-substraction to multipath effects. Multipath 
+effects may differ from time to time, illustrating periodicity, from multi-seconds to multi-minutes. If the receiver is at a standstill, and surroundings are both unchanged, multipath effects
+will happen again and again. Based on that, contiuous observations may eliminate the effects. 
+    They set two double-frequency receivers, one is base station, one is observation station in dynamic position mode, sampling per second. Satellite
+vertical angle is 13 degree. Collect more than 2 days' data with antenna position, observation mode and weather unchanged. Diagram 2 and 3 are average 
+3-dimension time-histories' diagrams, for the first day and the second respectively. We may find that the curves have same trend, so that the positioning
+results have systematic error. According to all-day track variety of satellite, time of the second day should be 236 seconds former than the first. Apply
+substraction on the corresponding data in the two days, we get diagram 4 which is the differences. It's so clearly that the curve is more smooth, implies
+that the systematic error has already been dropped. However it's not flat, since there is still accidental error, which can't be moved away in this way.
+To avoid accidental error, first use Daubechies wavelet to filter, then all-day-substraction. Table 2 is the result after wavelet filtering. We can see
+that the low-frequency errors which mainly based on multipath are not suppressed well, because of it's fluctuation. Vertical precision is about twice
+as much as horizontal precision. After all-day-substraction, precision improved in 3 dimensions. Compared with table 1 and 2, horizontal precision has
+been boosted one time. This illustrats that combine filtering and all-day-substraction can highly improve positioning precision.
+
 < Fianl conclusion>
 There are a lot of reasons to cause errors on GPS, multipath is the significant. Only way to improve the quality of GPS signals is multipath suppressing.
 There also a lot of methods dealing with multipath, hardware improvement and post-processing in conclusion. But it's complex and a hard way, since it 
@@ -145,4 +160,4 @@ has messy relationship with environment, antenna characters, reflectors, distanc
 mature, so it's a long way to improve the error correction in future. We can imagine that the future of GPS is big and wonderful if multipath could be 
 controled well which leading to a better precision of positioning.
 
-[6]施闯 ,刘经南 ,姚宜斌 . 高精度 GPS 网数据处理中的系统误差分析 . 武汉大学学报 ( 信息科学版) ,2002 ,27 (2), the formula is:
+[6]施闯 ,刘经南 ,姚宜斌 . 高精度 GPS 网数据处理中的系统误差分析 . 武汉大学学报 (信息科学版) ,2002 ,27 (2), the formula is:
