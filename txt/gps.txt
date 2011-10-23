@@ -129,10 +129,20 @@ From that we get 'alpha'i * Ao * cos'fai'i, they are multipath swings of every e
 compound signal is algebraic sum, not simple adding:
     formula again
 After getting the total multipath swing, with what we've got in receiver, according to formula group 1 and 3, consequently SNRAd is out of water.
+    The author then used two ASHTECH receivers and corresponding processing software called 'solutions' to experiment, one in flat ground (nearest 
+reflector is at least 50 meters away), one just close to a tall wall. So the multipath is a high-frequency item for the former (period is 30 ~ 40
+seconds), while low-frequency item for the latter (period is 0.3 ~ 1 hour). For the former the multipath could be regarded as noise in data processing,
+but for the latter correction for baseline must take place. First apply the original data without multipath correction to 'solutions' to calculate baseline
+vectors. The precision of the resulting baseline is inaccurate, difference of residual phase is kind of huge, from the baseline diagram and satellite
+residual phase diagram. After corrected by SNR method, residual phases are all pushed down, the maximum is less than 0.15 period, meanwhile baseline
+precision is highly improved.
 
 
 < Fianl conclusion>
 There are a lot of reasons to cause errors on GPS, multipath is the significant. Only way to improve the quality of GPS signals is multipath suppressing.
-There also a lot of methods dealing with multipath, hardware improvement and post-processing in conclusion.
+There also a lot of methods dealing with multipath, hardware improvement and post-processing in conclusion. But it's complex and a hard way, since it 
+has messy relationship with environment, antenna characters, reflectors, distance between reflector and antenna and so forth. Nowadays it's still not
+mature, so it's a long way to improve the error correction in future. We can imagine that the future of GPS is big and wonderful if multipath could be 
+controled well which leading to a better precision of positioning.
 
 [6]施闯 ,刘经南 ,姚宜斌 . 高精度 GPS 网数据处理中的系统误差分析 . 武汉大学学报 ( 信息科学版) ,2002 ,27 (2), the formula is:
