@@ -35,6 +35,11 @@ physdev match: using --physdev-out in the OUTPUT, FORWARD and POSTROUTING chains
 
 a模块用b模块函数 只需包含头文件 .ko就是.o 可以有未解析的符号
 
+watchdog 是一种以 NMI 方式检查 CPU 死锁的机制
+    ps aux | grep watchdog
+    root         5  0.0  0.0      0     0 ?        S    08:53   0:00 [watchdog/0]
+    root         8  0.0  0.0      0     0 ?        S    08:53   0:00 [watchdog/1]
+
 only same thing is NAME, file name, func name (ioctl), implementation is different.
 every device has it's own implementation of ioctl/read/write (file_operations)
 
