@@ -107,9 +107,12 @@ pthread:
        pthread_attr_setdetachstate (&attr, PTHREAD_CREATE_DETACHED);
        pthread_create (&thread, &attr, &thread_function, NULL);
        pthread_attr_destroy (&attr);
+
     kill a thread which in a finite loop:
 	pthread_setcancelstate (PTHREAD_CANCEL_ENABLE, NULL);
-	pthread_setcanceltype (PTHREAD_CANCEL_DEFERRED, NULL);
+	pthread_setcanceltype (PTHREAD_CANCEL_DEFERRED, NULL); + pthread_testcancel()
+        when process calls pthread_cancel(), thread exit at textcancel points, rather than exit directly
+	pthread_setcanceltype (PTHREAD_CANCEL_ASYNCHRONOUS, NULL); needs no pthread_testcancel()
 	while (1) {
             ...
 	    pthread_testcancel ();
