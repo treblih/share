@@ -1,8 +1,8 @@
-Ionospheric refraction
+Ionospheric delay
 In the ionosphere which is 50 ~ 100 km from the ground, 
 strong ionization generates a large amount of free electrons and positive ions from air 
 molecules by celestial radiation. When the GPS signals go through the ionosphere, like 
-other electromagnetic waves, the signal path will bend, the velocity will change, so that 
+other electromagnetic waves, the signal path will distort, the velocity will change, so that 
 ,the distance measurement error occurs. This is known as ionospheric refraction.
 Three ways to weaken its effects are available nowadays:
 1. Using dual-frequency observations. Using a combination of observations at different 
@@ -11,15 +11,22 @@ Three ways to weaken its effects are available nowadays:
 3. Find difference between the simultaneous observations. This method is great for 
    short-baseline.
 
-Tropospheric refraction
-The troposphere is the lowest portion of Earth's atmosphere, 
-which contains approximately 80% of the atmosphere's mass and 99% of its water vapor and 
-aerosols. The average depth of the troposphere is approximately 17 km. And the atmospheric 
-conditions are more complex. The troposphere gets radiation from the ground, and the 
-temperature decreases with increasing height. Like what happens in the ionosphere, through 
-the troposphere the GPS signal path also bend, so that the distance measurement error 
-occurs again. This is tropospheric refraction.
-There also three ways to weaken the effects:
+Tropospheric delay
+The troposphere is the lowest portion of the atmosphere, which contains approximately 80% of the atmosphere's masses and 99% of its vapors and aerosols. Its average 
+depth is approximately 17 km. The troposphere gets radiation from the ground, and the temperature decreases with increasing height. Like what happens in the 
+ionosphere, through the troposphere the GPS signal also distort, so that the distance measurement error occurs again. This is called tropospheric delay. The delay 
+以下来自 《GPS定位误差中对流层延迟的分析》http://wenku.baidu.com/view/76b3cc114431b90d6c85c7af.html
+depends on refractive index of the troposphere, while the refractive index depends on native temperature, pressure and relative humidity. By means of refractive
+index, the difference of path lenght caused by the tropospheric delay can be expressed as:
+    formula 1
+In it 'N' is refractive index, and the integral is the path of signal. About 80% to 90% of the tropospheric delay is caused by dry gas of the atmosphere, which is
+called dry component, the other 10% to 20% is caused by vapors, which is wet component. So Nd and Nw are defined as dry and wet refractive indices with 
+standard sea level respectively, and have relationships with atmospheric pressure, temperature and wet as described below:
+    formula 2
+P0 is pressure of wet atmosphere with standard sea level (mbar); Tk is absolute temperature with standard sea level, Tk = Tc + 273.2(K); e0 is pressure of dry
+atmosphere with standard sea level; Empirical constants a1, a2 and a3 are 12.92 K/bar, 371.90 K²/bar respectively (他娘的少一个常数。。) 
+
+There are three ways to weaken the effects:
 1. Using the tropospheric model, whose meteorological parameters measured in the station directly.
 2. Introduction the additional parameters describing the influence of the troposphere, 
    which to be estimated during data process.
@@ -31,7 +38,7 @@ the real measured data by the static and dynamic receivers. The experimental res
 model can eliminate 70% of troposphere delay effects, and the GPS positioning accuracy can be effectively imporved.
 
 
-Multipath
+Multipath effect
 本段结合自百度和《GPS 测量中多径误差简便模型》
 GPS receiver receives normal signals from satellites (called direct wave), and reflected signals through buildings, water or other reflective surface (called reflected wave). So it's compound signals.
 Because the direct and the reflected walk different ways, their phases are different too. Meanwhile, swings are also different. All these result in distortion of waves. This is multipath effect.
@@ -56,7 +63,7 @@ So, 'delta''phi' is effected by 'alpha' (reflected coefficient) and 'phi' (phase
     formula 7
 When give 'alpha' the maximum number 1, 'delta''phi' max = 'pai'/2, means that 'pai'/2 difference of carrier wavelength is caused by difference of carrier phase. For carrier wave L1, multipath effect can
 makes 4.8 cm difference of distance at most because it's wavelength is 19.03 cm. For carrier wave L2, wavelength is 24.42 cm, 6.1 cm difference of distance at most.
-All above discussions are based on the assuption of only one reflected signal, what a pity there will be a lot in reality. So every effects should be added to the final, and it's too complicated.
+All above discussions are based on the assumption of only one reflected signal, what a pity there will be a lot in reality. So every effects should be added to the final, and it's too complicated.
 本段来自《浅谈 GPS 接收机的多路径误差》
 Ways to suppress the effects:
 1. Select appropriate stations. 
@@ -112,7 +119,7 @@ from 3 to 9, much smaller than water. When they are wet, namely in rain environm
     They choose woods, metals, glass and so forth as different reflectors.
 According to their experiments, woods and metals can reflect GPS signals while glass does not.
 The dielectric constant of woods is 6.7, which of glass is just 3.5. Wood block could effect the positioning result
-in decimeter level. The multipath is definitely effected by surrounding objects, especially for metals. Because metals
+in decimeter level. The multipath is definitely effected by surroundings, especially for metals. Because metals
 can reflect electromagnetic wave totally. So antenna always has anti-metal board to suppress their influence.
 The multipath effect caused by nonmetal materials are according to their dielectric constants. The constant is larger, the reflection is larger.
 The dielectric constants of Wood block and sand are sort of large, so the reflected wave exists. Especially for water, it's 61.5,
@@ -149,9 +156,9 @@ So that we can figure out the influence on carrier phase by multipath effect ('d
     2) The movemnet of gain of antenna is contiuous and smooth in space, and is insensitive to the variety of satellite elevation angle and direction angle;
     3) Frequency of multipath effect is stable during a period. That's to say that the multipath effect should be there for a while in order to be figured out and 
 corrected by us.
-Combine these assuptions and formula group 1 and 2, we get:
+Combine these assumptions and formula group 1 and 2, we get:
     formula 3
-Different antennae have different gain. We can't figure out SNRAd precisely only by gain of antenna. From assuption 2 above, if the differences between
+Different antennae have different gain. We can't figure out SNRAd precisely only by gain of antenna. From assumption 2 above, if the differences between
 every adjacent epochs are not too large, regarding every SNRAd of two adjacent epochs is ok. Substraction between every two adjacent epochs can eliminate
 the direct signal:
     formula 4 (this time not group, only 1)
@@ -192,6 +199,9 @@ controled well which leading to a better precision of positioning.
 
 [6]施闯 ,刘经南 ,姚宜斌 . 高精度 GPS 网数据处理中的系统误差分析 . 武汉大学学报 (信息科学版) ,2002 ,27 (2), the formula is:
 
+以下都是我非常确定的术语翻译
+积分        integral
+海平面      sea level
 载波        carrier wave
 载波相位    carrier phase
 高度角/仰角 elevation angle

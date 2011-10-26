@@ -353,6 +353,11 @@ client ifcfg-eth0, BOOTPROTO="dhcp"
 search vbird.tsai (search means the dhcp server's domain-name, set in dhcpd.conf, not hostname)
 nameserver 147.11.1.11
 
+if can't work, vim /etc/dhclient.conf:
+    interface "eth0" {
+        send dhcp-client-identifier 01:aa:bb:cc:dd:ee:ff;
+    }
+
 lease {
   interface "eth0";
   fixed-address 192.168.1.20;
