@@ -8,8 +8,8 @@ all mutual:
     spinlock        spin
     semaphore       block then process context switch
 writer to reader:
-    rwlock          spin, reader is prior
-    seqlock         spin, writer is prior, if changed during reading, read again
+    rwlock          spin, equality, but writer may spin if there's at least one reader
+    seqlock         spin, equality, writing and reading may happen simultanously, if changed during reading, read again
     rcu             spin, reader is prior, just for pointed contents, not pointer itself
 
 
@@ -81,3 +81,28 @@ more example in listRCU.txt arrayRCU.txt checklist.txt
 		rcu_read_unlock();
 		return retval;
 	}
+
+#define preempt_disable() \
+do { \          
+    inc_preempt_count(); \
+    barrier(); \
+} while (0)
+#define inc_preempt_count()    add_preempt_count(1)
+#define add_preempt_count(val) do { preempt_count() += (val); } while (0)
+#define preempt_count()        (current_thread_info()->preempt_count)
+
+dead lock:
+1.  simplest circumstance
+    Try to aquire the same lock on the same core. If 2 cores compete, one executes the other waits, no problem.
+    Avoid interrupting by another executing thread, like hard-int, softirqs, higher-priority processes, they may try to aquire the locked spinlock leading to dead lock.
+    spin_lock may disable preemption whatever in UP or SMP, so if share sth. with interrupts, spin_lock_bh/spin_lock_irq/spin_lock_irqsave.
+    The last possibility is, direct or indirect schedule during lock() and unlock(), for example del_timer_sync().
+
+    Mutex doesn't have this issue in process context, the second time the same core try to lock the locked mutex, sleep rather than spin, which avoid dead lock.
+
+    Make a conclusion, using spin_lock in process context should be paid more attention, because of the indirect process schedule. That's why mutex are always prefered in 
+    process context.
+
+    Spinlock can avoid priority-inversion, use priority-ceiling, in reality when preempt_disable(), there's only 1 priority level in the system.
+
+2.  fatal hug

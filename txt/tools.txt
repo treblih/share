@@ -30,6 +30,13 @@ gprof (need exit itself, can't be killed or SIGINT)
     gprof2dot a.txt > a.dot
     dot -Tpng -o a.png
 
+cpuid / dmidecode --type cache / aspersa_summary
+/sys/devices/system/cpu/cpuX/cache/index0-3/size-type
+index0 is L1 data cache
+index1 is L1 instruction cache
+index2 is L2 cache
+index3 is L3 cache if it has
+
 nic speed:
     ifconfig eth0 media 100baseTX
     若出現 port: SIOCSIFMAP: Operation not supported ，可以改用 mii-tool，ethtool指令
@@ -923,7 +930,14 @@ s表示替换，s2是要被替换的字符串，他可以和s1相同（如果相
 
 :X		encryption
 
+convmv -fbig5 -tutf-8 -r --notest  recursive
 iconv -f(from-encode) gbk -t(to-encode) utf8 linux常用命令.txt > linux常用命令.txt.utf8
+    #!/bin/sh
+    iconv -c -s -f big5 -t utf-8 "$FILE" > "$FILE.tmp"
+    sed -e s/big5/UTF-8/ -e s/Big5/UTF-8/ -e s/BIG5/UTF-8/ "$FILE.tmp" > "$FILE"
+    rm "$FILE.tmp"
+
+    find . -name "*.htm*" -exec big5utf8.sh {} \;
 
 mount	/dev/sdb1(if use sdb, it says "U must specify the filesystem type)	/media/usb
 
@@ -1220,4 +1234,3 @@ rpm -e xxx (delete)
 rpm -ql xxx (find all installed path)
 rpm -qf /etc/rsyslog.conf
         % sysklogd-1.4.1-44.el5
-

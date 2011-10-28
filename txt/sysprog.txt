@@ -140,6 +140,12 @@ socket:
     可以在同一个socket中对不同的命令传送不同的数据结构
     netfilter提供的动态登记opt命令字可以动态添加删除sockopt操作命令字，而且不用修改内核原有的程序
 
+    int len = sizeof(buf); 
+    int *lenp = &len;
+    getsockopt(skfd, IPPROTO_IP, DDOS_GET_LOG, buf, (socklen_t *__restrict__)lenp);
+    when return, len will be set to the actually filled bytes, thus new len <= original len.
+    if len has an invalid value, 'invalid argument' happens
+
     
 signal:
     sleep(n) == signal(SIG_ALARM, handler) + alarm(n) + pause()
