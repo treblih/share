@@ -19,24 +19,33 @@ ionosphere, through the troposphere the GPS signal also distort, so that the dis
 depends on refractive index of the troposphere, while the refractive index depends on native temperature, pressure and relative humidity. By means of refractive
 index, the difference of path lenght caused by the tropospheric delay can be expressed as:
     formula 1
-In it 'N' is refractive index, and the integral is the path of signal. About 80% to 90% of the tropospheric delay is caused by dry gas of the atmosphere, which is
-called dry component, the other 10% to 20% is caused by vapors, which is wet component. So Nd and Nw are defined as dry and wet refractive indices with 
-standard sea level respectively, and have relationships with atmospheric pressure, temperature and wet as described below:
-    formula 2
+In it N is refractive index, and the integral is the path of signal. About 80% to 90% of the tropospheric delay is caused by dry air of the atmosphere, which is
+called dry component, the other 10% to 20% is caused by vapors, which is wet component. So Nd and Nw are defined as refractive indices of dry and wet component with 
+standard sea level respectively, and have relationships with air pressure, temperature and wet as described below:
+    formula group 2
 P0 is pressure of wet atmosphere with standard sea level (mbar); Tk is absolute temperature with standard sea level, Tk = Tc + 273.2(K); e0 is pressure of dry
 atmosphere with standard sea level; Empirical constants a1, a2 and a3 are 12.92 K/bar, 371.90 K²/bar respectively (他娘的少一个常数。。) 
-
 There are three ways to weaken the effects:
-1. Using the tropospheric model, whose meteorological parameters measured in the station directly.
-2. Introduction the additional parameters describing the influence of the troposphere, 
-   which to be estimated during data process.
-3. Find difference between the simultaneous observations.
-
-Ren Yafei and Ke Xizheng proposed one kind of simple troposphere delay revision model applied under the condition of lacking
-of the actual measured meteorological parameters, based on Hopfield model and Saastamoinen model. They use Matlab to analyze 
-the real measured data by the static and dynamic receivers. The experimental results indicate that the simply-revised 
-model can eliminate 70% of troposphere delay effects, and the GPS positioning accuracy can be effectively imporved.
-
+1. Using the tropospheric models, whose meteorological parameters measured in the station directly.
+Hopfield model and Saastamoinen model are typical. The refractive indices of dry and wet component in Hopfield model are different with they are in formula group 2,
+though the parameters have the same meaning:
+    formula group 3
+From formula 1, we get:
+    formula 4
+Based on theory, the relationship between refraction index of dry component and elevation is:
+    formula 5
+Nd0 is the index of dry component from Hopfield model (formula group 3). Depends on global atmospheric statistics, Hd can be expressed as:
+    formula 6
+The refractive index of wet component is complicated to estimate, because air humidity, longitude, latitude and season impact the model. A approximate way
+is to estimate it as formula 5 did:
+    formula 7
+So Nw0 is the index of wet component from Hopfield model (formula group 3). As the average of elevation (Hw) is 11000 meters, according to formula 4, the
+appropriate delay of signal which walks through zenith is (Ht is elevation of the station):
+    formula group 8
+While the Saastamoinen model is:
+    formula group 9
+Ts is absolute temperature of the station (K), Ps is local air pressure (mbar), es is local 水气压 (mbar), hs is local elevation (m), E is satellite elevation angle, 'delta'S is the corrected value of tropospheric refraction.
+2. Find difference between the simultaneous observations.
 
 Multipath effect
 本段结合自百度和《GPS 测量中多径误差简便模型》
@@ -202,6 +211,8 @@ controled well which leading to a better precision of positioning.
 以下都是我非常确定的术语翻译
 积分        integral
 海平面      sea level
+高程        elevation
+天顶        zenith
 载波        carrier wave
 载波相位    carrier phase
 高度角/仰角 elevation angle
