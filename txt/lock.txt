@@ -9,9 +9,14 @@ all mutual:
     semaphore       block then process context switch
 writer to reader:
     rwlock          spin, equality, but writer may spin if there's at least one reader
-    seqlock         spin, equality, writing and reading may happen simultanously, if changed during reading, read again
+    seqlock         spin, equality, reader won't be blocked, writing and reading may happen simultanously, if changed during reading, read again
     rcu             spin, reader is prior, just for pointed contents, not pointer itself
 
+spin_lock_irq & spin_lock_irqsave:
+在使用spin_lock_irq和spin_unlock_irq的情况下，完全可以用spin_lock_irqsave和spin_unlock_irqrestore取代，那具体应该使用哪一个也需要依情况而定，
+如果可以确信在对共享资源访问前中断是使能的，那么使用spin_lock_irq更好一些，因为它比spin_lock_irqsave要快一些，但是如果你不能确定是否中断使能，
+那么使用spin_lock_irqsave和spin_unlock_irqrestore更好，因为它将恢复访问共享资源前的中断标志而不是直接使能中断。
+当然，有些情况下需要在访问共享资源时必须中断失效，而访问完后必须中断使能，这样的情形使用spin_lock_irq和spin_unlock_irq最好
 
 rcu: 
 from Documentation/RCU/whatisRCU.txt
