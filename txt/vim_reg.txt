@@ -1,5 +1,7 @@
 :h pattern  for help
 
+word/char count     g<c-g>
+
 zero-widh   0长度匹配/0宽断言 只匹配某些条件而不匹配具体内容
     \< \> \b
     \@!

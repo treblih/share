@@ -55,6 +55,10 @@ ramdisk:
    mount /dev/ram0 ./mount2     doesn't like normal device, ramdisk can be mount on multi point
    cp file /mount
 
+df -h
+du -sh (h has the same meaning) dir
+du -s * | sort -nr (numeric & reverse) | head -20
+
 watch execute a program periodically, showing output fullscreen
 watch -d (highlight) -n 1 "ifconfig eth0 | grep bytes"
 
@@ -1216,17 +1220,18 @@ No Sockets found in /root/.screen.
 CRC check failed:   repo.xml broken, yum clean all
 
 
-pacman:
-== powerpill
-S   pkg
-Su  upgrade sys according to local db 
-Syu refresh local db then upgrade
-Sw  download but without installing
-U   install a local pkg; /path/pkg | http://path/pkg
-Rsn remove it & config file & dependencies
-IgnorePkg=...
-IgnoreGroup=...
-/tmp/packerbuild-.../tools/src
+pacman: == powerpill
+    S   pkg
+    Su  upgrade sys according to local db 
+    Syu refresh local db then upgrade
+    Sw  download but without installing
+    U   install a local pkg; /path/pkg | http://path/pkg
+    Qo  
+    Rsn remove it & config file & dependencies
+    IgnorePkg=...
+    IgnoreGroup=...
+    /tmp/packerbuild-.../tools/src
+    yaourt -Syu --aur   update aur
 
 rpm:
 rpm -qa (query all) | grep xxx

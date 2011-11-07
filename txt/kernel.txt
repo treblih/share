@@ -1,5 +1,7 @@
 http://www.kernel.org/pub/linux/kernel/v2.6/
 
+/var/spool/abrt/kereloops for debug info
+
 obj-m := mmiotool.o (module name)
 mmiotool-objs := mmiotool_test.o xxx.o yyy.o (module components)
 make -C build/linux-board-compiled
