@@ -22,7 +22,7 @@ set -o noclobber
 
 # User specific aliases and functions
 
-export PATH=$HOME/.bin:$HOME/.cabal/bin:$PATH:/usr/local/texlive/2009/bin/i386-linux:~/.bin/xmind/XMind_Linux/
+export PATH=$HOME/.bin:$HOME/.cabal/bin:$PATH:/usr/local/texlive/2009/bin/i386-linux
 
 alias  ls='ls --color=auto'
 alias  ll='ls -hil --color=auto'
@@ -80,6 +80,7 @@ WHITE=`tput setf 7`
 
 # if \[$WHITE\] doesn't exist, $ will be a normal char that could be deleted
 export PS1='\[$GREEN\]\u@\h \[$BLUE\]\w\[$GREEN\] \$\[$WHITE\] '
+export PS1='\[\e[01;32m\][\u@\[\e[01;33m\]\h\[\e[01;34m\]\W]\$ \[\e[00m\]'
 #PS1='\[\e[0;32m[\]\[\e[0;37m\]\u\[\e[m\] \[\e[0;34m\]\w\[\e[m\]\[\e[0;32m]\]\[\e[0;37m\]\$\[$WHITE\] '
 #PS1='\[\e[0;32m[\]\[\e[0;37m\]\u\[\e[m\] \[\e[0;34m\]\w\[\e[m\] \[\e[0;32m]\]\[\e[0;37m\]\$ \[\e[m\]\[\e[0;32m\]'
 

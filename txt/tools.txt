@@ -66,6 +66,10 @@ create pipe:
     mkfifo /opt/antiddos/common/log/attack-log.pipe
     sudo chmod 777 /opt/antiddos/common/log/attack-log.pipe
 
+dd:
+    seek 8k然后write 8k，不要truncate  只要是 of= 一个文件，dd必然会先truncate之，除非带上conv=notrunc
+    dd if=/dev/zero of=/test seek=2 bs=4K count=2 conv=notrunc 
+
 chmod 4755
 例如：root用户创建了一个上网认证程序netlogin，如果其他用户要上网也要用到这个程序，那就需要root用户运行chmod 755 netlogin命令使其他用户也能运行netlogin。
 但是netlogin执行时可能需要访问一些只有root用户才有权访问的文件，那么其他用户执行netlogin时可能因为权限不够还是不能上网。

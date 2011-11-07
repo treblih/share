@@ -1,3 +1,7 @@
+http://matplotlib.sourceforge.net/api/pyplot_api.html
+python plot
+
+
 ~/.gnuplot_history
 
 reset replot
