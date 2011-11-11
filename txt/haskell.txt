@@ -156,6 +156,11 @@ Saturday
 We could have used a Maybe a to represent the result but then we wouldn't know why we couldn't get the code. But now, we have information about the failure in our result type.
 Either a b = Left a | Right b
 
+where       只是语法构造
+let xx in   是语句(expression)，语句就有返回值，可以用在其他语中
+[if 5 > 3 then "Woo" else "Boo", if 'a' > 'b' then "Foo" else "Bar"]  ->    ["Woo", "Bar"]  
+4 * (if 10 > 5 then 10 else 0) + 2  
+4 * (let a = 9 in a + 1) + 2  
 
 FUNC:
 flip concatMap group span(break) splitAt enumFromTo inits tails zip7(max, not zip8)
