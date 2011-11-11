@@ -1,4 +1,5 @@
 http://www.kernel.org/pub/linux/kernel/v2.6/
+http://kernelnewbies.org/Linux_2_6_33
 
 /var/spool/abrt/kereloops for debug info
 
@@ -21,10 +22,29 @@ Makefile
     all:
             make -C /lib/modules/`uname -r`/build M=`pwd` modules
 
+if return -ENOMEM other than 0, 
+    % sudo insmod ./b.ko
+    insmod: error inserting './b.ko': -1 Cannot allocate memory
+
 memmap=256M@0x80000000      make kernel only use 256M base on 0x80000000
 mem=256M@0x80000000         make kernel ignore 256M base on 0x80000000
 
 physdev match: using --physdev-out in the OUTPUT, FORWARD and POSTROUTING chains for non-bridged traffic is not supported anymore
+
+CONFIG_LOCALVERSION="-kdump" to make product kernel as vmlinuz-2.6.31.14-kdump & /lib/modules/2.6.31.14-kdump
+
+kexec-kdump:
+ CONFIG_KEXEC=y 
+ CONFIG_CRASH_DUMP=y 
+ CONFIG_DEBUG_INFO=Y 
+ CONFIG_SYSFS=y 
+ CONFIG_PROC_VMCORE=y 
+ CONFIG_PHYSICAL_START=0x1000000 (16M)
+ CONFIG_RELOCATABLE=y 
+ optional:
+     CONFIG_SMP=n (but capture kernel must have maxcpus=1)
+     CONFIG_HIGHMEM64G=y (if physical mem >= 4G)
+ crashkernel=128M@16M (match with CONFIG_PHYSICAL_START) to boot args
 
 /etc/sysctl.conf        /proc/sys/kernel/...
     kernel.panic = n
@@ -579,6 +599,12 @@ retrieve huge memory:
            inefficient, memset(48M) 0.014s, while memset(512M) on contineous mem only 0.002s, TLB miss alot
         2. kmap
 
+中断发生以后，CPU跳到内核设置好的中断处理代码中去，由这部分内核代码来处理中断。这个处理过程中的上下文就是中断上下文。
+为什么可能导致睡眠的函数都不能在中断上下文中使用呢？ 首先睡眠的含义是将进程置于“睡眠”状态，在这个状态的进程不能被调度执行。然后，在一定的时机，这个进程可能会被重新置为“运行”状态，从而可能被调度执行。 可见，“睡眠”与“运行”是针对进程而言的，代表进程的task_struct结构记录着进程的状态。内核中的“调度器”通过task_struct对进程进行调度。
+但是，中断上下文却不是一个进程，它并不存在task_struct，所以它是不可调度的。所以，在中断上下文就不能睡眠。
+那么，中断上下文为什么不存在对应的task_struct结构呢？ 
+中断的产生是很频繁的（至少每毫秒（看配置，可能10毫秒或其他值）会产生一个时钟中断），并且中断处理过程会很快。如果为中断上下文维护一个对应的task_struct结构，那么这个结构频繁地分配、回收、并且影响调度器的管理，这样会对整个系统的吞吐量有所影响。
+但是在某些追求实时性的嵌入式linux中，中断也可能被赋予task_struct结构。这是为了避免大量中断不断的嵌套，导致一段时间内CPU总是运行在中断上下文，使得某些优先级非常高的进程得不到运行。这种做法能够提高系统的实时性，但是代价中吞吐量的降低。
 
 1.进入中断处理程序--->2.保存关键上下文---->3.开中断（sti指令）--->4.进入中断处理程序的handler--->5.关中断（cli指令）---->6.写EOI寄存器（表示中断处理完成）---->7.开中断。
 硬中断：

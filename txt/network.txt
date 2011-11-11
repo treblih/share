@@ -20,6 +20,8 @@ mii-tool -v
 ethtool eth0
     check nic info, for 100M, MTU is 1500
 
+sudo dstat --cpu --int --net -N eth0 --sys --socket --tcp --udp --unix --ipc --profile
+
 混杂模式下，网卡收到的包有几种： 
 1，发给本机的。 
 2，发给其他的机器的，但链路层是发给本机的，即本机是router。 

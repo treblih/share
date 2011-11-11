@@ -1,3 +1,7 @@
+Haskell excels at complex, symbolic computation and as of April 2009 can also handle a great many threads (see update below). 
+Moreover, Haskell has more tools for getting complicated code right: things like QuickCheck, SmallCheck, and the static type system.
+
+
 "functors are the tool to add some structure to an object"
 
 pattern match works only on "CONSTRUCTORS"

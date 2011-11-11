@@ -1224,6 +1224,12 @@ No Sockets found in /root/.screen.
 CRC check failed:   repo.xml broken, yum clean all
 
 
+apt-get:
+    $ apt-get update
+    GPG error: http://mirrors.163.com lenny Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY
+    $ aptitude install debian-archive-keyring
+    $ apt-get update
+
 pacman: == powerpill
     S   pkg
     Su  upgrade sys according to local db 

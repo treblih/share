@@ -18,6 +18,25 @@ spin_lock_irq & spin_lock_irqsave:
 那么使用spin_lock_irqsave和spin_unlock_irqrestore更好，因为它将恢复访问共享资源前的中断标志而不是直接使能中断。
 当然，有些情况下需要在访问共享资源时必须中断失效，而访问完后必须中断使能，这样的情形使用spin_lock_irq和spin_unlock_irq最好
 
+单CPU 情况: 
+假设 内核线程 A 持有spin lock L。 然后在持有锁的时候，来了中断。 
+中断结束后，如果 允许内核抢占，这个时候 调度了 另外一个 内核线程 B 执行。 而内核线程B 也想 持有 spin lock L。 可是 spin lock L 已经被 A 持有，于是 B 自旋，等待 锁 L 被A 释放。 然后由于 B 优先级比A 高，所以中断结束后，总是调度B运行， A 没有机会释放锁。。。。 
+除非你不能承受不可抢占期带来的损失   比如Montavista linux里就把大部分的spinlock替换成了mutex 
+
+用spin lock的情况下你当然可以使用 信号量（中断内除外）。但是 信号量很贵的，需要上下文切换
+
+cpu0 spin_lock -> sleep -> schedule -> cpu1 lock -> wait -> cpu0 killed -> cpu1 wait forever ??
+如果进程被kill了，内核部分的函数是会被执行的
+//kernel部分代码片段:
+xxx_read () 
+{ 
+    spin_lock(); 
+    ...... xxxxxx--->假设此处被休眠，后来该进程被kill了。那么后面的部分会执行的。 
+    spin_unlock(); //因此这句会被执行。 
+} 
+都是发kill信号，然后在回用户态的时候响应SIGKILL信号，而退出
+
+
 rcu: 
 from Documentation/RCU/whatisRCU.txt
 more example in listRCU.txt arrayRCU.txt checklist.txt
