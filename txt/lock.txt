@@ -1,5 +1,10 @@
 almost all locks are implemented in userspace, for efficient
 
+donw() <-> down_interrupible()
+The interruptible version is almost always the one you will want; it allows a user-space process that is waiting on a semaphore to be interrupted by the user. 
+You do not, as a general rule, want to use noninterruptible operations unless there truly is no alternative. 
+Non-interruptible operations are a good way to create unkillable processes (the dreaded "D state" seen in ps), and annoy your users.
+
 multithread then fork, child process clones all locks but discards all threads
 多线程程序 fork 前，应该由发起 fork 的线程 lock 所有子进程可能用到的锁，fork 后，把它们一一 unlock 
 当然，这样的做法就隐含了锁的次序。如果次序和平时不同，那么就会死锁。
