@@ -1,6 +1,8 @@
 http://www.kernel.org/pub/linux/kernel/v2.6/
 http://kernelnewbies.org/Linux_2_6_33
 
+内核抢占只是增加调度点
+
 /var/spool/abrt/kereloops for debug info
 
 obj-m := mmiotool.o (module name)
@@ -32,6 +34,10 @@ mem=256M@0x80000000         make kernel ignore 256M base on 0x80000000
 physdev match: using --physdev-out in the OUTPUT, FORWARD and POSTROUTING chains for non-bridged traffic is not supported anymore
 
 CONFIG_LOCALVERSION="-kdump" to make product kernel as vmlinuz-2.6.31.14-kdump & /lib/modules/2.6.31.14-kdump
+
+CONFIG_PAE <-> HIGHMEM4G    mutual exclusive
+    but only recognize 1G after reboot...
+    because HIGHMEM64G must be set with PAE
 
 kexec-kdump:
  CONFIG_KEXEC=y 

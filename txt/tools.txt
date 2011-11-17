@@ -43,6 +43,9 @@ nic speed:
     mii-tool -F 100baseTx-FD eth0
     ethtool -s eth0 speed 100 duplex full autoneg on
 
+taskset -p pid          to show running cpu
+taskset -p cpuX pid     to set to that cpu
+
 64.120.96.213 13es213
 
 disk recover -- testdisk
