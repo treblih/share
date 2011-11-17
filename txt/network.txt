@@ -24,9 +24,26 @@ ack num = seq num + 1
     man ifrename; iftab
     /etc/iftab
 
+cat /proc/net/dev  ==  netstat -i
+
 mii-tool -v   
 ethtool eth0
     check nic info, for 100M, MTU is 1500
+    -g eth0     ring buffer
+RxDescriptors
+specifies the "number of descriptors" (not buffer size) to store incoming frames on the adapter. 
+The default value is 256, which is also the maximum for some types of E1000-based adapters. 
+Others can allocate up to 4096 of these descriptors. The size of the receive buffer associated with each descriptor varies with the MTU configured on the adapter. 
+It is always a power-of-two number of bytes. The number of descriptors available will also depend on the per-buffer size. 
+"When all buffers have been filled by incoming frames, an interrupt will have to be signaled in any case."
+    -k eth0     all offload config
+    -C ethX rx-usecs 4  new interrupt moderation model introduced in 2.6.35, that's InterruptThrottleRate=4
+http://serverfault.com/questions/241421/napi-vs-adaptive-interrupts
+the delay between the tx and rx events and the generation of interrupts for those events.
+rx-frames[-irq] rx-usecs[-irq] tx-frames[-irq] tx-usecs[-irq]
+The frames parameters specify how many packets are received/transmitted before generating an interrupt. The usecs parameters specify how many microseconds after at least 1 packet is received/transmitted before generating an interrupt. The [-irq] parameters are the corresponding delays in updating the status when the interrupt is disabled.
+    -A ethX autoneg off rx off
+
 
 sudo dstat --cpu --int --net -N eth0 --sys --socket --tcp --udp --unix --ipc --profile
 
@@ -289,6 +306,11 @@ route add -net default gw 128.224.158.1 dev eth0
 when the board starts, "Sending DHCP requests"
  
 netstat -s   show IP TCP UDP ICMP details
+        -i   cat /proc/net/dev
+            Iface       MTU Met    RX-OK RX-ERR RX-DRP RX-OVR    TX-OK TX-ERR TX-DRP TX-OVR Flg
+            eth0       1500   0    54648      0      0      0 28978502      0      0      0 BMRU
+            lo        16436   0    13164      0      0      0    13164      0      0      0 LRU
+
 
 php asp perl    are on the server to process
 js html         on the client, embeded in browser, server sends js codes to browser
