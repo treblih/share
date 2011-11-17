@@ -322,7 +322,7 @@ gcc -g + ld	--> gdb
 gcc    + ld -s  --> exe
 sudo yum install gcc-g++
 gcc -std=c89 c99 gnu89 gnu99
-gcc -g -rdynamic a.c
+gcc -g -rdynamic -ggdb3 a.c                     standard args for debug
 ./a.out arg1 --> segment fault --> core.PID
 gdb ./a.out core.PID
     bt / frame
@@ -344,7 +344,7 @@ gcc -dD -E a.out    output all #define in source, excluding which defined in gcc
     -MM (excluding sys headers) main.o: main.c aaa.h
     -M                          main.o: main.c aaa.h stdio.h unistd.h ...
     -fstrict-overflow   generate more codes to check mem overflow
-    -rdynamic   为可执行文件留下可用于动态连接的符号
+    -rdynamic   为可执行文件留下可用于动态连接的符号, 加载所有的符号
                 向gcc传入-rdynamic，则链接器会得到-export-dynamic选项
     -static     link .a, not .so
 

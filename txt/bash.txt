@@ -3,6 +3,8 @@ ERROR:
     ./find_exe.sh: 24: Bad substitution
         check /bin/sh -> bash or dash....
 
+set -o emacs/vim    dive int emacs/vim env
+
 BASH:
 no global/local var, all visible after 'sourced'
 
