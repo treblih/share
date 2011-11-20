@@ -166,6 +166,10 @@ let xx in   是语句(expression)，语句就有返回值，可以用在其他�
 4 * (if 10 > 5 then 10 else 0) + 2  
 4 * (let a = 9 in a + 1) + 2  
 
+TRICK:
+.) any/all instead of and/or of Data.List
+.) on from Data.Function are always used with ..By from Data.List
+
 FUNC:
 flip concatMap group span(break) splitAt enumFromTo inits tails zip7(max, not zip8)
 Data.Ord (comparing) sortBy
