@@ -109,6 +109,10 @@ nfq:
     has mac-frame upper limit, drop the pack which is too large, i.e. 5k+
 
 pcap:
+    libpcap在Linux上利用PACKET_SOCKET接口从链路层获取原始套结字数据包。原始套结字可以在用户空间被用来从IP头中获取所有的数据包
+    当内核的网络堆栈收到一个数据包时，要对其进行一定的校验以便确定是否有packet套结字对它感兴趣。
+    如果有的话，这个数据包就被分发给对它感兴趣的套结字。如果没有的话，这个数据包继续流向TCP层，UDP层，或者其它的真正目的地。
+    对于SOCKET_RAW型的套结字也是这样的情形。SOCKET_RAW非常类似于SOCKET_PACKET型的套结字，区别就在于SOCKET_RAW不提供链路层的头信息
     can't drop pack, coz just a copy from kernel
     only 1 thread, can't use multi
     can get src-mac & dst-mac

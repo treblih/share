@@ -3,6 +3,8 @@ http://hgoldfish.mysmth.net/2008/07/09/%E5%BA%94%E7%94%A8python%E7%BC%96%E5%86%9
 
 round 四舍五入
 
+outputs = os.popen(cmd).readlines()/.read()
+
 变量的查找作用域优先级变为：局部、外部、全局和内建。 
 作用域由def、class、lambda等语句产生，if、try、for等语句并不会产生新的作用域。
 
