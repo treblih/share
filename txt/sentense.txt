@@ -146,16 +146,3 @@ E 119°52′32″~120°36′10″
 
 
 2294122789 
-ufo@yx          R&D
-eshine_list@yx  all people
-9.30  用于漏扫产品，凌动的平台
-9.33  WAF测试机，倍生的平台
-9.25  放在公司出口，测试规则的
-9.24  防护公司网站的，一般不要修改
-svn co https://192.168.9.2:8443/svn/vulscan/trunk
-svn co https://192.168.9.2:8443/svn/linuxwaf/trunk
-config.bak      
-date select button
-GUI button sequence
-wafmgr.cpp  CleanExit exit() directly
-exit_logged  useless

@@ -582,6 +582,17 @@ printf("%p", p);	0xbfcaca77
 scanf("%p", &p);
 sscanf(str, "%d%d%d %c", &t, &prob, &time, &ch); /* trick */
 
+feof()
+        while (!feof(fp)) {
+                fgets(str, BUF_SIZE, fp);
+                p = str;
+                sscanf(p, "Time: %d %d %d %d %d %d receiver xyz: %lf %lf %lf delta %lf", 
+                       &iarr[n][0], &iarr[n][1], &iarr[n][2], &iarr[n][3], &iarr[n][4], &iarr[n][5],
+                       &darr[n][0], &darr[n][1], &darr[n][2], &darr[n][3]);
+                ++n;
+        }
+    n will always be 1 larger than SLOC, SLOC + 1 = n, because at that time it just knows eof
+
 const int a = 5;
 a = 6;			ERROR
 *(int *)&a = 6;		circumvent the compiler checks

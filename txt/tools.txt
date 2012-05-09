@@ -1,5 +1,6 @@
 大话处理器
 
+http://wangcong.org/blog/archives/1791
 git://git.kernel.org/pub/scm/linux/kernel/git/paulmck/perfbook.git   parallel book
 
 source insight SI3US-721119-13700
@@ -30,12 +31,13 @@ gprof (need exit itself, can't be killed or SIGINT)
     gprof2dot a.txt > a.dot
     dot -Tpng -o a.png
 
-cpuid / dmidecode --type cache / aspersa_summary
-/sys/devices/system/cpu/cpuX/cache/index0-3/size-type
-index0 is L1 data cache
-index1 is L1 instruction cache
-index2 is L2 cache
-index3 is L3 cache if it has
+cpu cache:
+    cpuid / dmidecode -t cache / aspersa_summary / cpu_topology32.out (from intel)
+    /sys/devices/system/cpu/cpuX/cache/index0-3/size-type
+    index0 is L1 data cache
+    index1 is L1 instruction cache
+    index2 is L2 cache
+    index3 is L3 cache if it has
 
 nic speed:
     ifconfig eth0 media 100baseTX
@@ -234,7 +236,7 @@ arch (i386/i686/x86_64)
 printf("%d\n", sizeof(long))
 
 dmidecode		all hardware info
-dmidecode -t processor	only show processor's
+dmidecode -t processor	only show processor
 bios,system,baseboard,chassis,processor,memory,cache,connector,slot
 
 jp2a    jpg -> ascii

@@ -3,6 +3,11 @@
 
 解决互联网地址短缺的首选“正统”方案是IPv6，而不是NAT，是因为IETF认为NAT破坏了互联网“端到端透明性”的核心思想，是有害于互联网的发展的
 
+
+/etc/udev/rules.d/70-persistent-net.rules (all phy-soft NIC info matches)
+    SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="00:22:15:eb:64:a3", ATTR{dev_id}=="0x0", ATTR{type}=="1", KERNEL=="eth*", NAME="eth0"
+/etc/init.d/udev* restart
+
 dns
 208.67.222.222 
 208.67.222.220
@@ -10,6 +15,10 @@ dns
 168.95.192.2
 203.80.96.9 
 203.80.96.10
+
+sudo ifconfig eth0 192.168.1.114
+sudo route add default gw 192.168.1.1
+ping yahoo.com
 
 curl ifconfig.me    show my public ip
 
@@ -457,3 +466,9 @@ link/site/global
 Routers will not forward datagrams using link-local addresses at all
 site-local IPv6 addresses are the equivalent of IPv4 private addresses, since they are routed throughout the organization. 
 The concept of link-local scope is new to IPv6.
+
+NIC optimization:
+rx/tx descriptors:
+    for tx, 8-64 bytes per desc, for rx, 2048 per desc (desc itself is only 16 fixed bytes), because it must be aligned, at least 1500, and isn't permitted to cross a 4 KB page boundary
+    BSIZE in RCTL to set, Buffers that are 2048 bytes require only one descriptor per receive packet maximizing descriptor efficiency.
+    RFC2544 (fast forwarding), we've observed that excessively large descriptor rings decrease performance because of cache thrashing.
