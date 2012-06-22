@@ -1,2 +1,0 @@
-var or no var http://coolshell.cn/articles/7480.html
-js source check -- JSLint http://www.jslint.com/

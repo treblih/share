@@ -1,0 +1,8 @@
+HTML
+class 用于元素组（类似的元素，或者可以理解为某一类元素），而 id 用于标识单独的唯一的元素。
+
+CSS
+
+JS
+var or no var http://coolshell.cn/articles/7480.html
+js source check -- JSLint http://www.jslint.com/
