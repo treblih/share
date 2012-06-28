@@ -604,6 +604,8 @@ diff2html 是一个 Bash 脚本，利用管道机制将 diff 输出结果转换�
 grep	'sth. wanted' filename
 grep 	string/mode filename
 grep	-i ignore case 
+    -l only print file name
+    -r recursive
 	-n adding the line-num while printing
 	-w namely, \<...\>
 	-v excluding
