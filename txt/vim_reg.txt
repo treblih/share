@@ -21,7 +21,7 @@ zero-widh   0长度匹配/0宽断言 只匹配某些条件而不匹配具体内�
 \s      space
 \S      not space
 \{n,m}  repeat times
-\{-}    not greedy
+\{-}    not greedy  /a.\{-}b -> axbxbxb -> axb
 foo\|bar
 \%20c 匹配第20列
 \%20l 匹配第20行

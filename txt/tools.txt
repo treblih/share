@@ -1051,6 +1051,10 @@ vim:
 ÁÓÄÆÇÈÊËÌº¢
 ÚØÃÖÂÎÍ¼¾¿
 
+=======================
+v (select zone) -> y (yank to register `0') -> / C-r-0 (dump to search) or F5 C-r-0 (dump to replace)
+=======================
+
 C-x C-l     match an existing line
 C-x C-f     filename match under current vim dir
 -b(essential) a.bin, then :%!xxd, edit 0x.., not ascii

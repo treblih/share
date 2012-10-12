@@ -240,7 +240,7 @@ send to all network, use eth0 directly(just MAC no IP, so no ARP); send to other
 Address                  HWtype  HWaddress           Flags Mask            Iface
 128.224.158.1            ether   00:17:df:e5:ac:00   C                     eth0
 
-ping/traceroute use ICMP
+mtr/ping/traceroute use ICMP
 
 only 4 important files:
 /etc/hosts (find inner hostname-ip, 私有網域內部，最好將所有的 IP 都寫入)

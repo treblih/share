@@ -1,0 +1,62 @@
+lftp hotdress@hotdresscool.simple-helix.network
+18wfFf5s1S
+
+ewheat yc22 muhai r.suma CBRL
+
+reinstall
+    rm app/etc/local.xml
+    rm var/*
+
+gpasswd -a hask mysql
+gpasswd -a hask apache
+
+/var/log/httpd/error_log to check faliures
+503 -- rm /var/www/html/maintenance.flag; rm var/*
+
+127.0.0.1 instead of localhost when install
+
+1. cache disable in developing
+2. close poll
+
+3. Customer Configuration
+ login option -> No
+4. System->Index Management->Ready
+5. System->Tools->Compilation
+6. System->Developer->Merge CSS / JS
+7. sitemap
+8. shutdown cookies & js detection Configuration->Web->Browser Detection
+9. google analytics
+
+add-ons
+lightbox
+http://www.magentocommerce.com/magento-connect/themes/ig-lightbox.html
+themes
+http://web-experiment.info/magento14/grayscale
+SexyBookmarks
+http://connect20.magentocommerce.com/community/SexyBookmarks_Free_extension
+Social Sharing Buttons
+http://www.magentocommerce.com/magento-connect/catalog/product/view/id/14262/s/addshoppers-viral-product-sharing-2577/category/12852/
+http://help.addshoppers.com/customer/portal/articles/692490--magento-installation-instructions
+Social power share
+http://www.magentocommerce.com/magento-connect/social-power-share.html
+Facebook product
+http://www.magentocommerce.com/magento-connect/facebook-products-tab.html
+store on facebook
+http://www.magentocommerce.com/magento-connect/beetailer-facebook-integration.html
+facebook FANBOX
+http://www.magentocommerce.com/magento-connect/facebook-fan-box.html
+facebook all-in-one
+http://www.magentocommerce.com/magento-connect/magazento-all-in-one-facebook-widgets-integration.html
+Easy block
+http://www.magentocommerce.com/magento-connect/easy-cms-block-free-version.html
+group buy
+http://www.magentocommerce.com/magento-connect/zizio-social-deals.html
+Advanced related product
+http://ecommerce.iifire.com/marketing/advanced-related-products.html  PAY
+http://www.magentocommerce.com/magento-connect/advanced-related-products-9204.html FREE
+Generae all kind of forms
+http://www.magentocommerce.com/magento-connect/webforms-community-edition.html
+debug
+http://www.magentocommerce.com/magento-connect/magneto-debug-8676.html
+
+你要用软件测下，看下加载时间，有速度分析的网站，你可以去搜下这类网站，去试试。火狐浏览器有speedup插件可以帮你分析，你可以试下
