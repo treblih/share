@@ -491,6 +491,8 @@ sed 1,$d(delete 1st&last)
 a\ after; i\ above
     sed -i '/match_pattern/ \i add_sth'
 sed -n '10,15p' filename        print line 10-15 
+sed 'y/abc/xyz/g' x.txt   a->x & b->y & c->z
+sed '/pattern start/,/pattern end/s/xx/yy/g'  replace between the line containing /pattern start/ and the line containing /pattern end/
 
 
 GREP:

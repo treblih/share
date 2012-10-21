@@ -105,6 +105,8 @@ mysql:
     mysql> show databases; use xxx;
     mysql> update mysql.user set password = 'new-password' where user = 'root' (change password)
 
+    mysql -uroot -proot databasename < a.sql
+
     /etc/my.cnf
 
     BLOB (binary large object)，二进制大对象，是一个可以存储二进制文件的容器。在计算机中，BLOB常常是数据库中用来存储二进制文件的字段类型。BLOB是一

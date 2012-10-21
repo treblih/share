@@ -19,6 +19,7 @@ dns
 sudo ifconfig eth0 192.168.1.114
 sudo route add default gw 192.168.1.1
 ping yahoo.com
+sudo arp -s 192.168.1.1 38:83:45:AE:5A:AA
 
 curl ifconfig.me    show my public ip
 
@@ -239,6 +240,10 @@ send to all network, use eth0 directly(just MAC no IP, so no ARP); send to other
 % arp (only WAN, no LAN)
 Address                  HWtype  HWaddress           Flags Mask            Iface
 128.224.158.1            ether   00:17:df:e5:ac:00   C                     eth0
+
+anti ARP attack
+arp -s IP MAC
+arp -a (to show arp table)
 
 mtr/ping/traceroute use ICMP
 

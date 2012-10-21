@@ -23,6 +23,7 @@ zero-widh   0长度匹配/0宽断言 只匹配某些条件而不匹配具体内�
 \{n,m}  repeat times
 \{-}    not greedy  /a.\{-}b -> axbxbxb -> axb
 foo\|bar
+[1\|2\|3].jpg   1.jpg 2.jpg 3.jpg
 \%20c 匹配第20列
 \%20l 匹配第20行
 \(?\=expr\)     0-width assertion   jeans \<\w+\(?\=ns\>\)
