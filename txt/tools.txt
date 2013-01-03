@@ -86,6 +86,7 @@ find . -name "*.cpp" -exec wc -l {} \; | awk '{a+=$1} END {print a}'
 ... | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n
 find . -maxdepth 1 -type d                              all dir under current dir
 find . -maxdepth 1 -type d -exec make -C {} \;          recursive make
+find . -cmin -2 new created file within 2 min
 
 host/build      cpu-vendor-os
 WARNING: WindRiver calls the build system the host system and the host system, they call the target.
@@ -926,6 +927,19 @@ rhgb (red hat graphic boot)
 ro root=/dev/sda8(read only to mount root-fs, but when starting, will remount it as RW)
 
 wget -nc (skip the existing one, otherwise download a copy) -i download_list.txt
+wget -i file
+wget URL -O newname.jpg
+
+$ wget -r -np -nd http://example.com/packages/
+这条命令可以下载 http://example.com 网站上 packages 目录中的所有文件。其中，-np 的作用是不遍历父目录，-nd 表示不在本机重新创建目录结构。
+$ wget -r -np -nd –accept=iso http://example.com/centos-5/i386/
+与上一条命令相似，但多加了一个 –accept=iso 选项，这指示 wget 仅下载 i386 目录中所有扩展名为 iso 的文件。你也可以指定多个扩展名，只需用逗号分隔即可。
+$ wget -i filename.txt
+此命令常用于批量下载的情形，把所有需要下载文件的地址放到 filename.txt 中，然后 wget 就会自动为你下载所有文件了。
+$ wget -c http://example.com/really-big-file.iso
+这里所指定的 -c 选项的作用为断点续传。
+$ wget -m -k (-H) http://www.example.com/
+该命令可用来镜像一个网站，wget 将对链接进行转换。如果网站中的图像是放在另外的站点，那么可以使用 -H 选项。
 
 chmod a+wt /dir
 
@@ -945,10 +959,10 @@ s表示替换，s2是要被替换的字符串，他可以和s1相同（如果相
 
 :X		encryption
 
-convmv -fbig5 -tutf-8 -r --notest  recursive
+convmv -fbig5 -tutf8 -r --notest  recursive
 iconv -f(from-encode) gbk -t(to-encode) utf8 linux常用命令.txt > linux常用命令.txt.utf8
     #!/bin/sh
-    iconv -c -s -f big5 -t utf-8 "$FILE" > "$FILE.tmp"
+    iconv -c -s -f big5 -t utf8 "$FILE" > "$FILE.tmp"
     sed -e s/big5/UTF-8/ -e s/Big5/UTF-8/ -e s/BIG5/UTF-8/ "$FILE.tmp" > "$FILE"
     rm "$FILE.tmp"
 
@@ -1260,3 +1274,19 @@ rpm -e xxx (delete)
 rpm -ql xxx (find all installed path)
 rpm -qf /etc/rsyslog.conf
         % sysklogd-1.4.1-44.el5
+
+sendmail:
+/etc/mail/sendmail.mc  only change settings here
+m4 /etc/mail/sendmail.mc > /etc/mail/sendmail.cf
+(if no m4, yum install sendmail.cf)
+/etc/init.d/sendmail restart
+sendmail -ivf support@hotdresscool.com  armx86@gmail.com < tmp/a.mail
+
+cat a.mail --
+From: HotDressCool Support Team <support@hotdresscool.com>
+To: armx86#gmail.com (essential!!!)
+Subject: topic
+sdfasdfsdf
+my  boe welcome
+
+mail -v -s 'topic' -r "HotDressCool Support <support@hotdresscool.com>" armx86@gmail.com < tmp/a.mail

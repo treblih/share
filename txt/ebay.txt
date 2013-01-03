@@ -784,3 +784,72 @@ Hi, it's one of the packeges' tracking info:
 2012-09-17	Copenhagen INC,Danmark, Arrival at inward office of exchange
 2012-09-17 05:39 AM	Sent to Denmark
 2012-09-17 03:12 PM	Arrived in Denmark
+
+
+http://community.ebay.cn/thread-1200130653-1-1.html
+近期183网站不稳定，和大家分享一个新网站：中国邮政国际小包业务辅助系统！
+广州和深圳的挂号小包的信息都可以在这里查到，很稳定！
+链接：http://202.105.44.24:7001/InterPack/
+可以查到的国家以及网站：
+美国：http://www.usps.com/shipping/trackandconfirm.htm
+巴西：http://www.correios.com.br/servicos/rastreamento/rastreamento.cfm
+日本：http://tracking.post.japanpost.jp/service/jsp/refi/DP311-00100.jsp
+韩国：http://service.epost.go.kr/iservice/ems/ems_eng.jsp
+瑞士：http://www.swisspost.ch/
+丹  麦：http://www.postdanmark.dk/contentfull.dk?lang=en
+西班牙：http://www.correos.es/ENG/13-MenuRec2/01-MenuRec21/2010_c1-LocalizadorE.asp
+土耳其：http://www.ptt.gov.tr/en/interaktif/kayitliposta-yd.php
+黎巴嫩：http://www.libanpost.com.lb/TrackTrace/tabid/59/Default.aspx
+克罗地亚：http://ips.posta.hr/
+白俄罗斯：http://www.belpost.by/info/ems-search-packages-mail/
+厄瓜多尔：http://ipsweb.correosdelecuador.com.ec/ipswebtracking/tracking.htm
+摩尔多瓦：http://www.posta.md:8081/
+印度尼西亚：http://ems.posindonesia.co.id/
+卡塔尔：http://www.imolink.net/qpost/ttchmail/tracktrace.htm
+货物离港后才能查到的国家及网站：
+挪  威：http://www.posten.no/en/
+葡萄牙：http://www2.ctt.pt/feapl_2/app/open/objectSearch/ctt_feapl_132col-cttObjectSearch.jspx?lang=01
+阿联酋：
+http://www.emiratespost.com/frame.do;jsessionid=58d8aac35f6f49b486d9a752177ad5a7?page=%2Fgpaen%2Fgpatracktrace%2FTrackTraceMain.jsp%3Flanguage%3Den
+货物到达了国外才能查到的国家及网站：
+比利时：http://www.bpost.be/etr/light/showSearchPage.do?oss_language=en
+芬兰：http://www.posti.fi/english/eservices/itemtracking/index.html
+印  度：http://ipsweb.ptcmysore.gov.in/ipswebtracking/
+瑞典：http://www.posten.se/
+希  腊：http://www.elta-net.gr/
+智利：http://www.correos.cl/seguimiento/
+波兰：http://sledzenie.poczta-polska.pl/
+秘  鲁：http://www.serpost.com.pe/
+波黑：http://www.bhp.ba/track/1/0/36.html
+约旦：http://213.186.163.148/ipswebtrack/
+冰  岛：http://www.postur.is/english/desktopdefault.aspx/tabid-69/
+意大利：http://www.poste.it/online/dovequando/start.do?subaction=raccomandata（要输入日期）
+俄罗斯：http://www.russianpost.ru/rp/servise/ru/home/postuslug/trackingpo
+爱尔兰：http://track.anpost.ie/track/tracklist.html
+新西兰：http://www.nzpost.co.nz/Cultures/en-NZ/OnlineTools/Tracking/
+加拿大：http://www.canadapost.ca/cpo/mc/languageswitcher.jsf
+新加坡：http://www.singpost.com/ra/ra_article_status.asp
+以色列：http://www.israelpost.co.il/itemtrace.nsf/mainsearch?openform&L=EN
+乌拉圭：http://www.correo.com.uy/index.asp?codPag=tyt
+马耳他：http://trackandtrace.maltapost.com/TrackAndTrace.asp
+墨西哥：http://www.sepomex.gob.mx/
+匈牙利：http://www.posta.hu/
+乌克兰：http://www.ukrposhta.com/www/upost_en.nsf/search_post?openpage
+立陶宛：http://trace.post.lt/tandtCritImbed.jsp?refresh=1276154675419
+卢森堡：http://www.trackandtrace.lu/homepage.htm
+亚美尼亚：http://www.haypost.am/view-lang-eng-page-79.html
+保加利亚：http://services.bgpost.bg/WebTracking/
+塞浦路斯：http://ips.cypruspost.gov.cy/ipswebtrack/
+斯洛伐克：http://tandt.posta.sk/en
+澳大利亚：
+罗马尼亚：http://www.posta-romana.ro/track_trace
+爱沙尼亚：http://teavitus.post.ee/ar_status.asp
+拉脱维亚：http://www.pasts.lv/lv/uzzinas/meklet_sutijumu.html
+沙特阿拉伯：http://www.sp.com.sa/English/Saudipost/Pages/default.aspx
+斯洛文尼亚：http://sledenje.posta.si/default.aspx
+哈萨克斯坦：
+http://portal.kazpost.kz/wps/portal/!ut/p/c1/04_SB8K8xLLM9MSSzPy8xBz9CP0os3hnJ68gjyDHYCOTMAMzA08D_yCLoABPQwMDE6B8JLK8k5-TgaeFeYiRmZG3sYGBAQHd4SD78OsHyRvgAI4G-n4e-bmp-gW5EQZZJo6KANJJIQU!/dl2/d1/L2dJQSEvUUt3QS9ZQnB3LzZfQ0JKUkhSQVMyNFYwNjBJME9SOFJQSTEwMDQ!/
+阿富汗：http://afghanpost.gov.af/
+183全程跟踪的国家：
+美国、瑞士、德国、日本、韩国、荷兰、丹麦、芬兰、南非、捷克、西班牙、匈牙利、爱尔兰、爱沙尼亚、厄瓜多尔、罗马尼亚、斯洛伐克、克罗地亚、哈萨克斯坦、波多黎各、阿塞拜疆、多米尼加共和国、阿塞拜疆、百慕大、阿尔巴尼亚、赞比亚、柬埔寨
+

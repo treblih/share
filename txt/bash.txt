@@ -493,6 +493,8 @@ a\ after; i\ above
 sed -n '10,15p' filename        print line 10-15 
 sed 'y/abc/xyz/g' x.txt   a->x & b->y & c->z
 sed '/pattern start/,/pattern end/s/xx/yy/g'  replace between the line containing /pattern start/ and the line containing /pattern end/
+sed '/test/{ n; s/aa/bb/; }' example-----如果test被匹配，则移动到匹配行的下一行，替换这一行的aa，变为bb，并打印该行，然后继续。
+[0-9]\{4\}      4 digits
 
 
 GREP:

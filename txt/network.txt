@@ -481,3 +481,36 @@ rx/tx descriptors:
     for tx, 8-64 bytes per desc, for rx, 2048 per desc (desc itself is only 16 fixed bytes), because it must be aligned, at least 1500, and isn't permitted to cross a 4 KB page boundary
     BSIZE in RCTL to set, Buffers that are 2048 bytes require only one descriptor per receive packet maximizing descriptor efficiency.
     RFC2544 (fast forwarding), we've observed that excessively large descriptor rings decrease performance because of cache thrashing.
+
+
+REMOTE_ADDR  访问客户端的 IP 地址
+HTTP_VIA   如果有该条信息, 就证明您使用了代理服务器,代理服务器的地址就是后面的数值。
+HTTP_X_FORWARDED_FOR   如果有该条信息, 也证明了您使用了代理服务器代理服务器的地址就是后面的数值。
+HTTP_ACCEPT_LANGUAGE   您浏览器所使用的语言集
+HTTP_USER_AGENT   对大多数浏览器而言，这个值一般是 Mozilla. 可能还会包括浏览器的类型和版本号以及操作系统信息。
+HTTP_HOST   网页服务器名称
+使用不同种类代理服务器，上面的信息会有所不同：
+一、没有使用代理服务器的情况：
+REMOTE_ADDR = 您的 IP
+HTTP_VIA = 没数值或不显示
+HTTP_X_FORWARDED_FOR = 没数值或不显示
+二、使用透明代理服务器的情况：Transparent Proxies
+REMOTE_ADDR = 代理服务器 IP
+HTTP_VIA = 代理服务器 IP
+HTTP_X_FORWARDED_FOR = 您的真实 IP
+这类代理服务器还是将您的信息转发给您的访问对象，无法达到隐藏真实身份的目的。
+三、使用普通匿名代理服务器的情况：Anonymous Proxies
+REMOTE_ADDR = 代理服务器 IP
+HTTP_VIA = 代理服务器 IP
+HTTP_X_FORWARDED_FOR = 代理服务器 IP
+隐藏了您的真实IP，但是向访问对象透露了您是使用代理服务器访问他们的。
+四、使用欺骗性代理服务器的情况：Distorting Proxies
+REMOTE_ADDR = 代理服务器 IP
+HTTP_VIA = 代理服务器 IP
+HTTP_X_FORWARDED_FOR = 随机的 IP
+告诉了访问对象您使用了代理服务器，但编造了一个虚假的随机IP代替您的真实IP欺骗它。
+五、使用高匿名代理服务器的情况：High Anonymity Proxies (Elite proxies)
+REMOTE_ADDR = 代理服务器 IP
+HTTP_VIA = 没数值或不显示
+HTTP_X_FORWARDED_FOR = 没数值或不显示
+完全用代理服务器的信息替代了您的所有信息，就象您就是完全使用那台代理服务器直接访问对象。
