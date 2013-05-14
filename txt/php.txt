@@ -210,3 +210,10 @@ while ($arr) {                  current($arr);
 	current($arr);          while ($arr) {
 	each($arr);			next($arr);				
 }				}
+
+
+
+
+track_errors = on in php.ini, then var_dump($php_errormsg); to display the lastest error
+print_r(array) similar to var_dump(array)
+a = print_r(array, TRUE);

@@ -35,3 +35,12 @@ SEO:
 1）使用Micro Niche Finder或者其他的niche查找工具，找出那些低竞争性的关键词，这至关重要，在Micro Niche Finder中选择关键词的组成趋势，并取保排除竞争力告诉25的词语，最后筛选出高于2000的本地搜索的结果。
 2）搜索这些关键词，查看排名前5的网站，查询这5个站点的backlink，如果他们的backlink超过500以上，选择另外一个，最终选择backlink最少的那个
 3）放置一个300×250的广告在你的侧边栏，防止一个468×60的广告在你的文章底部，放置一个336×280的广告在你的标题下方。
+
+
+迁移后除主页外404
+permalinks肯定选了非default，即伪静态页面，否则不会出现
+1.检查.htaccess是否有写权限 否则wp无法自动更新该文件
+2.确定apache加载了rewrite模块
+apache2 -- a2enmod rewrite
+apache -- LoadModule rewrite_module modules/mod_rewrite.so in http.conf
+如果还不行 google搜那些手动改.htaccess的方案
